@@ -1,0 +1,1 @@
+- When intake_complete and ready_to_draft are both true, call ▶TOPIC[Draft New Position]. For edits to the draft, call it again with RevisionRequest. If an edit changes an intake fact (such as direct reports), save it first, then call it again with RevisionRequest describing that change.
