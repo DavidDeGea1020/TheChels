@@ -1,0 +1,382 @@
+kind: AdaptiveDialog
+inputs:
+  - kind: AutomaticTaskInput
+    propertyName: BusinessReason
+    description: "Why the position is being created, in the user's words or one of: Team growth, New function, Increased workload, Regulatory requirement, New product or service, Organizational restructure, Risk or compliance need, Other. Include the clarified situation if given."
+    entity: StringPrebuiltEntity
+    shouldPromptUser: false
+
+  - kind: AutomaticTaskInput
+    propertyName: RequestType
+    description: "One of: New, Replacement, Restructured, Expanded, Reduced. Infer only when the user's answer makes it clear."
+    entity: StringPrebuiltEntity
+    shouldPromptUser: false
+
+  - kind: AutomaticTaskInput
+    propertyName: Department
+    description: "Department or business area the position sits in."
+    entity: StringPrebuiltEntity
+    shouldPromptUser: false
+
+  - kind: AutomaticTaskInput
+    propertyName: PrimaryPurpose
+    description: "Why the role exists: Provide specialized technical knowledge, Lead a function or process, Perform analysis and make recommendations, Manage risk/compliance/regulatory requirements, Support sales/revenue generation/client management, or Other with the user's description."
+    entity: StringPrebuiltEntity
+    shouldPromptUser: false
+
+  - kind: AutomaticTaskInput
+    propertyName: DailyWork
+    description: "The complete, up-to-date description of all day-to-day work the user has described so far, in their words. Include earlier details, not only the newest."
+    entity: StringPrebuiltEntity
+    shouldPromptUser: false
+
+  - kind: AutomaticTaskInput
+    propertyName: ReportsTo
+    description: "Title of the position this role reports to."
+    entity: StringPrebuiltEntity
+    shouldPromptUser: false
+
+  - kind: AutomaticTaskInput
+    propertyName: HasDirectReports
+    description: "Yes or No, interpreted from however the user answered: will the position have direct reports."
+    entity: StringPrebuiltEntity
+    shouldPromptUser: false
+
+  - kind: AutomaticTaskInput
+    propertyName: DirectReportCount
+    description: "Number of direct reports as digits only (e.g. 3). Leave empty if not stated."
+    entity: StringPrebuiltEntity
+    shouldPromptUser: false
+
+  - kind: AutomaticTaskInput
+    propertyName: OwnedScope
+    description: "Functions, processes, portfolios, systems, or client relationships the role owns."
+    entity: StringPrebuiltEntity
+    shouldPromptUser: false
+
+  - kind: AutomaticTaskInput
+    propertyName: Decisions
+    description: "Decisions the role makes on its own, and matters it escalates or needs approval for."
+    entity: StringPrebuiltEntity
+    shouldPromptUser: false
+
+  - kind: AutomaticTaskInput
+    propertyName: Sales
+    description: "Yes or No, interpreted from however the user answered: responsible for generating revenue, developing business, acquiring customers, or sales/portfolio growth goals."
+    entity: StringPrebuiltEntity
+    shouldPromptUser: false
+
+  - kind: AutomaticTaskInput
+    propertyName: RelationshipManager
+    description: "Yes or No, interpreted from however the user answered: primary point of contact for assigned client relationships, or manages an assigned portfolio, book of business, or client accounts."
+    entity: StringPrebuiltEntity
+    shouldPromptUser: false
+
+  - kind: AutomaticTaskInput
+    propertyName: NMLS
+    description: "Yes, No, or Unsure, interpreted from however the user answered: will the role discuss or negotiate residential mortgage loan terms, take applications, or do work that may require NMLS registration."
+    entity: StringPrebuiltEntity
+    shouldPromptUser: false
+
+  - kind: AutomaticTaskInput
+    propertyName: Education
+    description: "The minimum education in the user's words, starting with the closest standard level (High School Diploma / GED Equivalent, Associate Degree, Bachelor's Degree, or Master's Degree), then any field of study they gave. Example: Bachelor's Degree - Finance, Accounting, or related field."
+    entity: StringPrebuiltEntity
+    shouldPromptUser: false
+
+  - kind: AutomaticTaskInput
+    propertyName: EducationRequirement
+    description: "Required or Preferred."
+    entity: StringPrebuiltEntity
+    shouldPromptUser: false
+
+  - kind: AutomaticTaskInput
+    propertyName: Experience
+    description: "The minimum related experience in the user's words, starting with the closest standard range (Minimum 1 Year, 2-4 Years, 5-7 Years, 8-10 Years, or 10+ Years), then the type of experience they described. Example: 5-7 Years - commercial loan underwriting at a bank."
+    entity: StringPrebuiltEntity
+    shouldPromptUser: false
+
+  - kind: AutomaticTaskInput
+    propertyName: LicenseStatus
+    description: "Required, Preferred, or Not Applicable."
+    entity: StringPrebuiltEntity
+    shouldPromptUser: false
+
+  - kind: AutomaticTaskInput
+    propertyName: LicenseDetails
+    description: "Name of the license, certification, registration, or designation, plus timing if given (e.g. within 12 months of hire)."
+    entity: StringPrebuiltEntity
+    shouldPromptUser: false
+
+  - kind: AutomaticTaskInput
+    propertyName: ClassificationNotes
+    description: "Any nuance the user gave about direct reports, Sales, Relationship Manager, or NMLS that a plain Yes/No/Unsure doesn't capture, in their words. Include earlier notes, not only the newest."
+    entity: StringPrebuiltEntity
+    shouldPromptUser: false
+
+  - kind: AutomaticTaskInput
+    propertyName: RequestedTitle
+    description: "The functional title the user is requesting, only if they have offered one."
+    entity: StringPrebuiltEntity
+    shouldPromptUser: false
+
+modelDescription: "Saves the facts a user gives during a new position intake and returns the intake status as JSON. Call this every time the user answers an intake question or adds or changes any detail about the new position, including several details in one message. Fill only the inputs the user actually provided; never guess. After it returns, ask about next_item following its guidance."
+beginDialog:
+  kind: OnRecognizedIntent
+  id: main
+  intent: {}
+  actions:
+    - kind: SetVariable
+      id: setVariable_npSave
+      variable: Global.NewPosition
+      value: |-
+        ={
+            Active: true,
+            BusinessReason: Coalesce(Topic.BusinessReason, Global.NewPosition.BusinessReason),
+            RequestType: Coalesce(Topic.RequestType, Global.NewPosition.RequestType),
+            Department: Coalesce(Topic.Department, Global.NewPosition.Department),
+            PrimaryPurpose: Coalesce(Topic.PrimaryPurpose, Global.NewPosition.PrimaryPurpose),
+            DailyWork: Coalesce(Topic.DailyWork, Global.NewPosition.DailyWork),
+            ReportsTo: Coalesce(Topic.ReportsTo, Global.NewPosition.ReportsTo),
+            HasDirectReports: Coalesce(Proper(Topic.HasDirectReports), Global.NewPosition.HasDirectReports),
+            DirectReportCount: Coalesce(Topic.DirectReportCount, Global.NewPosition.DirectReportCount),
+            OwnedScope: Coalesce(Topic.OwnedScope, Global.NewPosition.OwnedScope),
+            Decisions: Coalesce(Topic.Decisions, Global.NewPosition.Decisions),
+            Sales: Coalesce(Proper(Topic.Sales), Global.NewPosition.Sales),
+            RelationshipManager: Coalesce(Proper(Topic.RelationshipManager), Global.NewPosition.RelationshipManager),
+            NMLS: Coalesce(Proper(Topic.NMLS), Global.NewPosition.NMLS),
+            Education: Coalesce(Topic.Education, Global.NewPosition.Education),
+            EducationRequirement: Coalesce(Proper(Topic.EducationRequirement), Global.NewPosition.EducationRequirement),
+            Experience: Coalesce(Topic.Experience, Global.NewPosition.Experience),
+            LicenseStatus: Coalesce(Proper(Topic.LicenseStatus), Global.NewPosition.LicenseStatus),
+            LicenseDetails: Coalesce(Topic.LicenseDetails, Global.NewPosition.LicenseDetails),
+            RequestedTitle: Coalesce(Topic.RequestedTitle, Global.NewPosition.RequestedTitle),
+            ClassificationNotes: Coalesce(Topic.ClassificationNotes, Global.NewPosition.ClassificationNotes)
+        }
+
+    - kind: SetVariable
+      id: setVariable_npChecklist
+      variable: Topic.Checklist
+      value: |-
+        =Table(
+            {Item: "business reason", Needed: IsBlank(Global.NewPosition.BusinessReason), Playbook: "E1, E2",
+             Ask: "Why is this position being created? What business need is driving the request?",
+             Examples: "Team growth | New function | Increased workload | Regulatory requirement | New product or service | Organizational restructure | Risk or compliance need | Other",
+             Explain: "",
+             Note: "Accept a selection or a plain-language answer. If the answer is broad (for example Team growth), follow up once: Which statement best describes the situation? Example answers: The current team does not have enough capacity to handle the workload | The team is taking on new responsibilities that require additional expertise | Business volume, clients, accounts, or transactions have increased | The department is expanding and needs additional staff | Other. If the reason centers on retaining or rewarding a specific employee, continue neutrally and note it for HR review."},
+            {Item: "new, replacement, restructured, expanded, or reduced", Needed: IsBlank(Global.NewPosition.RequestType), Playbook: "E1",
+             Ask: "Is this a brand-new role, or does it replace, restructure, expand, or reduce an existing one?",
+             Examples: "New | Replacement | Restructured | Expanded | Reduced", Explain: "",
+             Note: "If the business reason already makes this clear, save it without asking."},
+            {Item: "department or business area", Needed: IsBlank(Global.NewPosition.Department), Playbook: "B2",
+             Ask: "Which department or business area will this role sit in?",
+             Examples: "", Explain: "", Note: ""},
+            {Item: "primary purpose", Needed: IsBlank(Global.NewPosition.PrimaryPurpose), Playbook: "B2, C3, E3",
+             Ask: "Which option best describes the primary purpose of this new position?",
+             Examples: "Provide specialized technical knowledge | Lead a function or process | Perform analysis and make recommendations | Manage risk, compliance, or regulatory requirements | Support sales, revenue generation, or client management | Other",
+             Explain: "Lead a function or process means the role owns or oversees an ongoing business process or area. Perform analysis and make recommendations means the role reviews information and provides findings or recommendations to support decisions.",
+             Note: "Understand why the role exists. Do not ask for a title yet. Give the explanation only if asked, then return to this question."},
+            {Item: "day-to-day work", Needed: IsBlank(Global.NewPosition.DailyWork), Playbook: "B3, E2",
+             Ask: "What will this person actually do day-to-day that nobody on the team is currently doing today?",
+             Examples: "", Explain: "",
+             Note: "Let the manager describe the work in their own words; never ask for HR terms. If thin, ask once for two or three concrete recurring tasks, how often they happen, and what each produces. If they describe a person, redirect to what the role needs."},
+            {Item: "who the role reports to", Needed: IsBlank(Global.NewPosition.ReportsTo), Playbook: "B4, C2",
+             Ask: "Which position will this role report to?",
+             Examples: "", Explain: "", Note: ""},
+            {Item: "direct reports (yes/no)", Needed: IsBlank(Global.NewPosition.HasDirectReports), Playbook: "B4, C1, C2",
+             Ask: "Will this position have direct reports? If so, how many?",
+             Examples: "Yes | No", Explain: "",
+             Note: "Senior and Lead are Individual Contributor roles; Lead may guide work but does not supervise employees."},
+            {Item: "number of direct reports", Needed: Global.NewPosition.HasDirectReports = "Yes" && IsBlank(Global.NewPosition.DirectReportCount), Playbook: "B4",
+             Ask: "How many total direct reports will this position have?",
+             Examples: "", Explain: "",
+             Note: "Two or more means the position manages people. Fewer than two is an exception HR reviews; mention it neutrally."},
+            {Item: "functions, processes, portfolios, systems, or client relationships owned", Needed: IsBlank(Global.NewPosition.OwnedScope), Playbook: "B3",
+             Ask: "Will this role own any specific functions, processes, portfolios, systems, or client relationships? If so, which ones?",
+             Examples: "", Explain: "",
+             Note: "If the day-to-day work already answered this, save it instead of asking."},
+            {Item: "decisions made and what needs approval or escalation", Needed: IsBlank(Global.NewPosition.Decisions), Playbook: "B3, E3",
+             Ask: "What will this role be able to decide on its own, and what will it need to escalate or get approval for?",
+             Examples: "",
+             Explain: "Decision support means the role provides analysis, recommendations, expertise, or insights that help someone else make the final decision. Decision-making authority means the role can independently decide or approve matters within the assigned area. A role may have both.",
+             Note: "Explain only if asked, then return to the intake. Never use decision-making authority, judgment, or discretion to define a level."},
+            {Item: "sales responsibility", Needed: IsBlank(Global.NewPosition.Sales), Playbook: "B5",
+             Ask: "Is this role responsible for generating revenue, developing business, acquiring customers, or maintaining sales or portfolio growth goals?",
+             Examples: "Yes | No", Explain: "",
+             Note: "One simple question, no extra branching. HR makes the final Sales determination."},
+            {Item: "relationship manager", Needed: IsBlank(Global.NewPosition.RelationshipManager), Playbook: "B6",
+             Ask: "Will this role be the primary point of contact for assigned customer, client, or business relationships, or manage an assigned portfolio, book of business, or client accounts?",
+             Examples: "Yes | No",
+             Explain: "Relationship Manager roles typically own, maintain, develop, and grow ongoing relationships.",
+             Note: "HR makes the final determination."},
+            {Item: "NMLS screening", Needed: IsBlank(Global.NewPosition.NMLS), Playbook: "B7",
+             Ask: "Will this role discuss or negotiate residential mortgage loan terms, take applications, or otherwise perform duties that may require NMLS registration?",
+             Examples: "Yes | No | Unsure", Explain: "",
+             Note: "If Unsure, say HR and Compliance will review it. Never make the NMLS determination."},
+            {Item: "minimum education", Needed: IsBlank(Global.NewPosition.Education), Playbook: "B8",
+             Ask: "What minimum education is typically needed for this role, and in what field of study, if any?",
+             Examples: "High School Diploma / GED Equivalent | Associate Degree | Bachelor's Degree | Master's Degree", Explain: "",
+             Note: "Save the closest standard level plus any field of study. The JD keeps the standard language allowing an equivalent combination of education and relevant experience."},
+            {Item: "education required or preferred", Needed: !IsBlank(Global.NewPosition.Education) && IsBlank(Global.NewPosition.EducationRequirement), Playbook: "B8",
+             Ask: "Is that education required, or preferred?",
+             Examples: "Required | Preferred", Explain: "", Note: ""},
+            {Item: "minimum related work experience", Needed: IsBlank(Global.NewPosition.Experience), Playbook: "B9",
+             Ask: "How much related work experience is needed, and what kind of experience?",
+             Examples: "Minimum 1 Year | 2-4 Years | 5-7 Years | 8-10 Years | 10+ Years", Explain: "",
+             Note: "Save the closest standard range plus the type of experience. If the amount falls between ranges or is unclear, confirm which range fits. For people leaders, also ask about supervisory experience."},
+            {Item: "licenses or certifications", Needed: IsBlank(Global.NewPosition.LicenseStatus), Playbook: "B10",
+             Ask: "Does this role require or prefer a license, certification, registration, or professional designation?",
+             Examples: "Required | Preferred | Not Applicable", Explain: "", Note: ""},
+            {Item: "license or certification name and timing", Needed: (Global.NewPosition.LicenseStatus = "Required" || Global.NewPosition.LicenseStatus = "Preferred") && IsBlank(Global.NewPosition.LicenseDetails), Playbook: "B10",
+             Ask: "Which one, and does it need to be obtained within a certain time after hire?",
+             Examples: "", Explain: "",
+             Note: "Ask about timing only if relevant."},
+            {Item: "requested title", Needed: IsBlank(Global.NewPosition.RequestedTitle), Playbook: "B1, C1, C2, C3",
+             Ask: "Based on the work we've described, what functional title would you propose for this role?",
+             Examples: "", Explain: "",
+             Note: "Describe the work first, pick the title second. Do not approve or reject the title; it goes to title and level review and HR makes the final decision."}
+        )
+
+    - kind: SetVariable
+      id: setVariable_npStatus
+      variable: Topic.IntakeStatus
+      value: |-
+        =JSON(
+            {
+                intake_complete: CountRows(Filter(Topic.Checklist, Needed)) = 0,
+                next_item: First(Filter(Topic.Checklist, Needed)),
+                still_missing: ForAll(Filter(Topic.Checklist, Needed), Item),
+                people_leadership: Switch(
+                    Global.NewPosition.HasDirectReports,
+                    "No", "Individual Contributor",
+                    "Yes", If(
+                        IsBlank(Global.NewPosition.DirectReportCount), "Pending - number of direct reports not captured",
+                        IfError(Value(Global.NewPosition.DirectReportCount), 0) >= 2, "This Position Manages People",
+                        "HR review - fewer than 2 direct reports"
+                    ),
+                    "Not yet captured"
+                ),
+                hr_review_flags: ForAll(
+                    Filter(
+                        Table(
+                            {Flag: "NMLS - manager unsure; HR and Compliance review required", On: Global.NewPosition.NMLS = "Unsure"},
+                            {Flag: "People leadership - fewer than 2 direct reports; HR review required (exception to the 2+ guideline)", On: Global.NewPosition.HasDirectReports = "Yes" && !IsBlank(Global.NewPosition.DirectReportCount) && IfError(Value(Global.NewPosition.DirectReportCount), 0) < 2},
+                            {Flag: "Title - Senior and Lead are Individual Contributor titles, but this role has direct reports", On: Global.NewPosition.HasDirectReports = "Yes" && ("Senior" in Global.NewPosition.RequestedTitle || ("Lead" in Global.NewPosition.RequestedTitle && !("Leader" in Global.NewPosition.RequestedTitle)))}
+                        ),
+                        On
+                    ),
+                    Flag
+                ),
+                captured: Global.NewPosition
+            },
+            JSONFormat.FlattenValueTables
+        )
+
+inputType:
+  properties:
+    BusinessReason:
+      displayName: BusinessReason
+      description: "Why the position is being created, in the user's words or one of: Team growth, New function, Increased workload, Regulatory requirement, New product or service, Organizational restructure, Risk or compliance need, Other. Include the clarified situation if given."
+      type: String
+
+    RequestType:
+      displayName: RequestType
+      description: "One of: New, Replacement, Restructured, Expanded, Reduced. Infer only when the user's answer makes it clear."
+      type: String
+
+    Department:
+      displayName: Department
+      description: "Department or business area the position sits in."
+      type: String
+
+    PrimaryPurpose:
+      displayName: PrimaryPurpose
+      description: "Why the role exists: Provide specialized technical knowledge, Lead a function or process, Perform analysis and make recommendations, Manage risk/compliance/regulatory requirements, Support sales/revenue generation/client management, or Other with the user's description."
+      type: String
+
+    DailyWork:
+      displayName: DailyWork
+      description: "The complete, up-to-date description of all day-to-day work the user has described so far, in their words. Include earlier details, not only the newest."
+      type: String
+
+    ReportsTo:
+      displayName: ReportsTo
+      description: "Title of the position this role reports to."
+      type: String
+
+    HasDirectReports:
+      displayName: HasDirectReports
+      description: "Yes or No, interpreted from however the user answered: will the position have direct reports."
+      type: String
+
+    DirectReportCount:
+      displayName: DirectReportCount
+      description: "Number of direct reports as digits only (e.g. 3). Leave empty if not stated."
+      type: String
+
+    OwnedScope:
+      displayName: OwnedScope
+      description: "Functions, processes, portfolios, systems, or client relationships the role owns."
+      type: String
+
+    Decisions:
+      displayName: Decisions
+      description: "Decisions the role makes on its own, and matters it escalates or needs approval for."
+      type: String
+
+    Sales:
+      displayName: Sales
+      description: "Yes or No, interpreted from however the user answered: responsible for generating revenue, developing business, acquiring customers, or sales/portfolio growth goals."
+      type: String
+
+    RelationshipManager:
+      displayName: RelationshipManager
+      description: "Yes or No, interpreted from however the user answered: primary point of contact for assigned client relationships, or manages an assigned portfolio, book of business, or client accounts."
+      type: String
+
+    NMLS:
+      displayName: NMLS
+      description: "Yes, No, or Unsure, interpreted from however the user answered: will the role discuss or negotiate residential mortgage loan terms, take applications, or do work that may require NMLS registration."
+      type: String
+
+    Education:
+      displayName: Education
+      description: "The minimum education in the user's words, starting with the closest standard level (High School Diploma / GED Equivalent, Associate Degree, Bachelor's Degree, or Master's Degree), then any field of study they gave. Example: Bachelor's Degree - Finance, Accounting, or related field."
+      type: String
+
+    EducationRequirement:
+      displayName: EducationRequirement
+      description: "Required or Preferred."
+      type: String
+
+    Experience:
+      displayName: Experience
+      description: "The minimum related experience in the user's words, starting with the closest standard range (Minimum 1 Year, 2-4 Years, 5-7 Years, 8-10 Years, or 10+ Years), then the type of experience they described. Example: 5-7 Years - commercial loan underwriting at a bank."
+      type: String
+
+    LicenseStatus:
+      displayName: LicenseStatus
+      description: "Required, Preferred, or Not Applicable."
+      type: String
+
+    LicenseDetails:
+      displayName: LicenseDetails
+      description: "Name of the license, certification, registration, or designation, plus timing if given (e.g. within 12 months of hire)."
+      type: String
+
+    ClassificationNotes:
+      displayName: ClassificationNotes
+      description: "Any nuance the user gave about direct reports, Sales, Relationship Manager, or NMLS that a plain Yes/No/Unsure doesn't capture, in their words. Include earlier notes, not only the newest."
+      type: String
+
+    RequestedTitle:
+      displayName: RequestedTitle
+      description: "The functional title the user is requesting, only if they have offered one."
+      type: String
+
+outputType:
+  properties:
+    IntakeStatus:
+      displayName: IntakeStatus
+      description: "JSON. next_item is the single next intake item: ask its Ask text in your own natural words. Examples are sample answers to guide the user, not a menu: weave a few in naturally (for example...) and accept any answer in the user's own words, interpreting it into the input format; if it is ambiguous, ask one short confirming question. Give Explain only if the user asks, follow Note, and ground in the JD Agent Playbook section named in Playbook. still_missing lists remaining items in order. people_leadership and hr_review_flags are system determinations. captured holds every fact saved so far. intake_complete is true when nothing is missing."
+      type: String
