@@ -1,0 +1,1 @@
+concat(item()?['JobCode'], ' | ', item()?['Title'], ' | ', item()?['PeopleManagement'])
