@@ -69,6 +69,11 @@ beginDialog:
       variable: Global.NewPositionReview
       value: =""
 
+    - kind: SetVariable
+      id: setVariable_npResetDraft
+      variable: Global.NewPositionDraft
+      value: =""
+
     - kind: SendActivity
       id: sendActivity_npOpening
       activity:

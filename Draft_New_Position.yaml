@@ -1,0 +1,134 @@
+kind: AdaptiveDialog
+inputs:
+  - kind: AutomaticTaskInput
+    propertyName: RevisionRequest
+    description: "The manager's requested changes to the current draft, in their words (for example: reword duty 3, add a duty about ACH backup, shorten the purpose). Leave empty for the first draft."
+    entity: StringPrebuiltEntity
+    shouldPromptUser: false
+
+modelDescription: "Drafts or revises the new position's Purpose, Principal Duties and Responsibilities, Education, Work Experience, and Certifications from the saved intake, and shows the Purpose and Principal Duties to the manager. Call it when the intake is complete and ready to draft, and again whenever the manager asks for changes to the draft (pass their changes as RevisionRequest)."
+beginDialog:
+  kind: OnRecognizedIntent
+  id: main
+  intent: {}
+  actions:
+    - kind: ConditionGroup
+      id: conditionGroup_dpNotReady
+      conditions:
+        - id: conditionItem_dpNotReady
+          condition: =Global.NewPositionReady <> true || IsBlank(Global.NewPosition.DailyWork)
+          actions:
+            - kind: SetVariable
+              id: setVariable_dpStatusNotReady
+              variable: Topic.DraftStatus
+              value: ="NotReady"
+
+            - kind: EndDialog
+              id: endDialog_dpNotReady
+
+    - kind: InvokeAIBuilderModelAction
+      id: invokeAIBuilderModelAction_dpDraft
+      input:
+        binding:
+          IntakeJSON: |-
+            =JSON(
+                {
+                    captured: Global.NewPosition,
+                    people_leadership: Switch(
+                        Global.NewPosition.HasDirectReports,
+                        "No", "Individual Contributor",
+                        "Yes", If(
+                            IsBlank(Global.NewPosition.DirectReportCount), "Pending - number of direct reports not captured",
+                            IfError(Value(Global.NewPosition.DirectReportCount), 0) >= 2, "This Position Manages People",
+                            "HR review - fewer than 2 direct reports"
+                        ),
+                        "Not yet captured"
+                    ),
+                    readiness_review: Global.NewPositionReview
+                },
+                JSONFormat.FlattenValueTables
+            )
+          CurrentDraft: =Global.NewPositionDraft
+          RevisionRequest: =If(IsBlank(Global.NewPositionDraft), "", Topic.RevisionRequest)
+
+      output:
+        binding:
+          predictionOutput: Topic.DraftResult
+
+      aIModelId: PASTE_DRAFT_PROMPT_ID
+
+    - kind: SetVariable
+      id: setVariable_dpWasRevision
+      variable: Topic.WasRevision
+      value: =!IsBlank(Global.NewPositionDraft)
+
+    - kind: SetVariable
+      id: setVariable_dpSave
+      variable: Global.NewPositionDraft
+      value: =Topic.DraftResult.text
+
+    - kind: SetVariable
+      id: setVariable_dpParse
+      variable: Topic.D
+      value: =ParseJSON(Topic.DraftResult.text)
+
+    - kind: SetVariable
+      id: setVariable_dpPurpose
+      variable: Topic.PurposeText
+      value: =Text(Topic.D.purpose)
+
+    - kind: SetVariable
+      id: setVariable_dpDuties
+      variable: Topic.DutiesText
+      value: =Concat(Table(Topic.D.principal_duties), "- " & Text(ThisRecord.Value), Char(10))
+
+    - kind: SetVariable
+      id: setVariable_dpIntro
+      variable: Topic.Intro
+      value: =If(Topic.WasRevision, "Here's the updated draft.", "Here's a first draft based on what you've shared.")
+
+    - kind: SendActivity
+      id: sendActivity_dpShow
+      activity:
+        text:
+          - |-
+            {Topic.Intro}
+
+            **Purpose**
+
+            {Topic.PurposeText}
+
+            ---
+
+            **Principal Duties and Responsibilities**
+
+            {Topic.DutiesText}
+
+    - kind: SetVariable
+      id: setVariable_dpStatus
+      variable: Topic.DraftStatus
+      value: =If(Topic.WasRevision, "Revised", "Drafted")
+
+    - kind: SetVariable
+      id: setVariable_dpReviewOut
+      variable: Topic.DraftReview
+      value: =Topic.DraftResult.text
+
+inputType:
+  properties:
+    RevisionRequest:
+      displayName: RevisionRequest
+      description: "The manager's requested changes to the current draft, in their words (for example: reword duty 3, add a duty about ACH backup, shorten the purpose). Leave empty for the first draft."
+      type: String
+
+outputType:
+  properties:
+    DraftReview:
+      displayName: DraftReview
+      description: "JSON from the drafting step. The Purpose and Principal Duties were already shown word for word; never repeat, re-show, or paraphrase them. Use change_summary (one line), notes_for_manager (brief), questions_for_manager, and hr_flags (carry to the final summary). Education, work_experience, and certifications are saved for the final review; do not show them now."
+      type: String
+
+    DraftStatus:
+      displayName: DraftStatus
+      description: "Drafted or Revised: the draft is on screen. In one or two short lines, mention the change_summary and any notes, then ask the first questions_for_manager item, or if there are none, ask whether the Purpose and Duties look right or what they would change. NotReady: the intake is not complete or not ready to draft; continue the intake."
+      type: String
