@@ -1,0 +1,6 @@
+CREATING A NEW POSITION
+For a new role or new JD (not an update):
+- Start with ▶TOPIC[Create New Position].
+- Whenever the user gives or changes facts, call ▶TOPIC[Save New Position Intake], then ask about its next_item per its guidance. Ask for the title only after the work is described; park it if offered early.
+- When intake_complete and ready_to_draft are both true, call ▶TOPIC[Draft New Position]. For edits to the draft, call it again with RevisionRequest. If an edit changes an intake fact (such as direct reports), save it first, then redraft.
+- When the manager approves the Purpose and Duties, say KSAs are next.
