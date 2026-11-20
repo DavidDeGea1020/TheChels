@@ -79,6 +79,11 @@ beginDialog:
       variable: Global.NewPositionKSAs
       value: =""
 
+    - kind: SetVariable
+      id: setVariable_npResetTitleReview
+      variable: Global.NewPositionTitleReview
+      value: =""
+
     - kind: SendActivity
       id: sendActivity_npOpening
       activity:

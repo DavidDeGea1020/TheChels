@@ -1,0 +1,115 @@
+kind: AdaptiveDialog
+modelDescription: "Reviews the new position's requested title against the drafted job description using City National's title and level governance rules, and shows the result to the manager. Call it after the manager approves the KSAs, and again after the manager proposes a different title (save the new title first)."
+beginDialog:
+  kind: OnRecognizedIntent
+  id: main
+  intent: {}
+  actions:
+    - kind: ConditionGroup
+      id: conditionGroup_tlNotReady
+      conditions:
+        - id: conditionItem_tlNotReady
+          condition: =IsBlank(Global.NewPositionKSAs) || IsBlank(Global.NewPositionDraft)
+          actions:
+            - kind: SetVariable
+              id: setVariable_tlStatusNotReady
+              variable: Topic.TitleReviewStatus
+              value: ="NotReady"
+
+            - kind: EndDialog
+              id: endDialog_tlNotReady
+
+    - kind: InvokeAIBuilderModelAction
+      id: invokeAIBuilderModelAction_tlReview
+      input:
+        binding:
+          IntakeJSON: |-
+            =JSON(
+                {
+                    captured: Global.NewPosition,
+                    people_leadership: Switch(
+                        Global.NewPosition.HasDirectReports,
+                        "No", "Individual Contributor",
+                        "Yes", If(
+                            IsBlank(Global.NewPosition.DirectReportCount), "Pending - number of direct reports not captured",
+                            IfError(Value(Global.NewPosition.DirectReportCount), 0) >= 2, "This Position Manages People",
+                            "HR review - fewer than 2 direct reports"
+                        ),
+                        "Not yet captured"
+                    ),
+                    readiness_review: Global.NewPositionReview
+                },
+                JSONFormat.FlattenValueTables
+            )
+          DraftJSON: =Global.NewPositionDraft
+          KSAsJSON: =Global.NewPositionKSAs
+
+      output:
+        binding:
+          predictionOutput: Topic.TitleResult
+
+      aIModelId: PASTE_TITLE_PROMPT_ID
+
+    - kind: SetVariable
+      id: setVariable_tlSave
+      variable: Global.NewPositionTitleReview
+      value: =Topic.TitleResult.text
+
+    - kind: SetVariable
+      id: setVariable_tlParse
+      variable: Topic.T
+      value: =ParseJSON(Topic.TitleResult.text)
+
+    - kind: SetVariable
+      id: setVariable_tlResult
+      variable: Topic.ResultText
+      value: =Text(Topic.T.result)
+
+    - kind: SetVariable
+      id: setVariable_tlMessage
+      variable: Topic.ManagerMessage
+      value: =Text(Topic.T.manager_message)
+
+    - kind: SetVariable
+      id: setVariable_tlTitle
+      variable: Topic.TitleShown
+      value: =If(IsBlank(Global.NewPosition.RequestedTitle), "(not provided)", Global.NewPosition.RequestedTitle)
+
+    - kind: ConditionGroup
+      id: conditionGroup_tlShow
+      conditions:
+        - id: conditionItem_tlShow
+          condition: =Topic.ResultText <> "no_title"
+          actions:
+            - kind: SendActivity
+              id: sendActivity_tlShow
+              activity:
+                text:
+                  - |-
+                    **Title and level review**
+
+                    Requested title: {Topic.TitleShown}
+
+                    {Topic.ManagerMessage}
+
+    - kind: SetVariable
+      id: setVariable_tlStatus
+      variable: Topic.TitleReviewStatus
+      value: =Topic.ResultText
+
+    - kind: SetVariable
+      id: setVariable_tlReviewOut
+      variable: Topic.TitleReview
+      value: =Topic.TitleResult.text
+
+outputType:
+  properties:
+    TitleReview:
+      displayName: TitleReview
+      description: "JSON from the title and level review. The manager_message was already shown word for word; never repeat or reword it. Use questions_for_manager and hr_flags (carry hr_flags to the final summary). Never suggest a specific alternative title, and never state what the title, level, or grade will be."
+      type: String
+
+    TitleReviewStatus:
+      displayName: TitleReviewStatus
+      description: "consistent: the review is on screen; add nothing about the title and say the comparison with existing jobs is next. concerns: the review is on screen; ask the first questions_for_manager item. If the manager proposes a different title, save it with Save New Position Intake, update the Purpose with Draft New Position (RevisionRequest: the new title), then call this topic again. If they keep the title, the concerns go to HR as flags; continue. no_title: nothing was shown; ask the manager what title they would propose, save it, then call this topic again. NotReady: KSAs are not approved yet; return to the KSAs."
+      type: String
