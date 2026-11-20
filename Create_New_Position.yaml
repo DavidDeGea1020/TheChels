@@ -6,7 +6,7 @@ inputs:
     entity: StringPrebuiltEntity
     shouldPromptUser: false
 
-modelDescription: "Starts a new job description intake when a user wants to create a new position, a new job, or a brand-new job description. Do not use for updating or viewing an existing job description. If a new position intake is already in progress, call it only when the user asks to start over, with StartOver set to Yes."
+modelDescription: "Starts a new job description intake when a user wants to create a new position, a new job, or a brand-new job description. Do not use for updating or viewing an existing job description. If a new position intake is already in progress, call it only when the user asks to start over, with StartOver set to Yes. If the user chooses to continue an intake in progress, call Save New Position Intake with no inputs to get the next question."
 beginDialog:
   kind: OnRecognizedIntent
   id: main
@@ -18,10 +18,17 @@ beginDialog:
         - id: conditionItem_npInProgress
           condition: =Global.NewPosition.Active = true && Proper(Topic.StartOver) <> "Yes"
           actions:
-            - kind: SetVariable
-              id: setVariable_npStatusBusy
-              variable: Topic.StartStatus
-              value: ="AlreadyInProgress"
+            - kind: SendActivity
+              id: sendActivity_npBusy
+              activity:
+                text:
+                  - It looks like we already started a new position together. Would you like to continue where we left off, or start over?
+                quickReplies:
+                  - kind: MessageBack
+                    text: Continue where we left off
+
+                  - kind: MessageBack
+                    text: Start over
 
             - kind: EndDialog
               id: endDialog_npBusy
@@ -142,21 +149,10 @@ beginDialog:
           - kind: MessageBack
             text: Other
 
-    - kind: SetVariable
-      id: setVariable_npStatusStarted
-      variable: Topic.StartStatus
-      value: ="Started"
 
 inputType:
   properties:
     StartOver:
       displayName: StartOver
       description: "Yes only if the user explicitly asked to start over, restart, or discard the new position intake already in progress. Otherwise leave empty."
-      type: String
-
-outputType:
-  properties:
-    StartStatus:
-      displayName: StartStatus
-      description: "Started: the welcome and opening question were already shown, so add nothing and wait for the user's answer. AlreadyInProgress: a new position intake is underway, so ask whether to continue where you left off or start over; to start over, call this topic again with StartOver set to Yes; to continue, resume with the next open intake item."
       type: String
