@@ -19,7 +19,7 @@ CurrentKSAs: paste the full JSON output from Test A
 RevisionRequest:
 Remove S2 and add knowledge of ACH processing rules.
 
-EXPECT: S2 removed; ACH knowledge added ONLY if supported (it is not in the duties, so expect a note or question instead of an invented item); all other items word for word; change_summary describes the change.
+EXPECT: S2 removed; ACH knowledge NOT added because no duty covers ACH, with a note that a matching duty must be added first; all other items word for word; change_summary describes the change.
 
 
 TEST C - NO CHANGE REQUESTED
@@ -47,3 +47,37 @@ RevisionRequest:
 Add an ability to evaluate and discipline the specialists.
 
 EXPECT: no evaluate or discipline item; notes_for_manager explains Lead is an Individual Contributor role; an hr_flag starting "People leadership review:" or "Job Architecture review:".
+
+
+BLANK-INPUT CHECKS (spec Section 3)
+
+TEST F - CurrentKSAs blank, RevisionRequest present
+IntakeJSON and DraftJSON: same as Test A
+CurrentKSAs: (none)
+RevisionRequest: Remove S2.
+EXPECT: a normal first draft; RevisionRequest ignored; change_summary "".
+
+TEST G - intake fields blank (Sales, RelationshipManager, title, people_leadership)
+IntakeJSON:
+{"captured": {"Active": true, "BusinessReason": "Increased workload - outgoing and incoming wire volume has doubled over the past year", "RequestType": "New", "Department": "Treasury Operations", "PrimaryPurpose": "Lead a function or process", "DailyWork": "Reviews and releases outgoing domestic and international wire requests (about 150 a day) after verifying callbacks and authorizations; investigates and resolves incoming wire exceptions and returns; monitors the Fed and SWIFT queues during the day and escalates delays; reconciles the daily wire general ledger accounts; screens wires against OFAC and escalates potential matches to BSA; answers wire status questions from branches and relationship managers; maintains wire procedures; helps train new operations staff on the wire platform", "ReportsTo": "Treasury Operations Manager", "HasDirectReports": "No", "DirectReportCount": "", "OwnedScope": "The daily wire release process and wire exception queue; the wire procedures manual", "Decisions": "Releases wires within established authorization limits and approves routine exception resolutions; escalates wires over limit, potential OFAC matches, and suspected fraud to the manager or BSA", "Sales": "", "RelationshipManager": "", "NMLS": "No", "Education": "Bachelor's Degree - Finance or Business", "EducationRequirement": "Preferred", "Experience": "2-4 Years - wire transfer operations at a bank", "LicenseStatus": "Not Applicable", "LicenseDetails": "", "RequestedTitle": "", "ClassificationNotes": ""}, "people_leadership": ""}
+
+DraftJSON: same as Test A
+CurrentKSAs: (none)
+RevisionRequest: (none)
+EXPECT: valid JSON; no supervisory items; no Sales/RM items beyond what the duties support; nothing invented.
+
+TEST H - purpose blank, duties present
+IntakeJSON: same as Test A
+DraftJSON:
+{"purpose": "", "principal_duties": [{"text": "Reviews and releases outgoing domestic and international wire requests after verifying callbacks and authorizations."}, {"text": "Investigates and resolves incoming wire exceptions and returns."}, {"text": "Monitors Federal Reserve and SWIFT queues throughout the day and escalates delays to management."}, {"text": "Reconciles daily wire general ledger accounts to ensure accuracy and timely resolution of differences."}, {"text": "Screens wire transactions against OFAC lists and escalates potential matches to BSA."}, {"text": "Responds to wire status inquiries from branches and relationship managers."}, {"text": "Approves routine exception resolutions within established authorization limits."}, {"text": "Escalates wires over authorized limits and suspected fraud to the Treasury Operations Manager."}, {"text": "Maintains the wire procedures manual to reflect current processes."}, {"text": "Assists with training new operations staff on the wire platform."}], "education": "Bachelor's Degree in Finance, Business or related field. Preferred Or\nAn equivalent combination of education and relevant professional experience may be considered in lieu of a degree.", "work_experience": [{"text": "2-4 years of wire transfer operations experience in a bank. Required"}], "certifications": "", "change_summary": "", "notes_for_manager": [], "questions_for_manager": [], "hr_flags": []}
+
+CurrentKSAs: (none)
+RevisionRequest: (none)
+EXPECT: KSAs aligned to the duties only; no error.
+
+TEST I - every input blank
+IntakeJSON: (none)
+DraftJSON: (none)
+CurrentKSAs: (none)
+RevisionRequest: (none)
+EXPECT: valid JSON in the exact schema; empty knowledge, skills, and abilities; one question asking for the duties.
