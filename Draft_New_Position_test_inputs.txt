@@ -1,26 +1,46 @@
-TEST 1 - FIRST DRAFT
+Use (none) wherever an input should be empty. That is what the topic sends.
+
+TEST A - FIRST DRAFT (CurrentDraft and RevisionRequest blank)
 IntakeJSON:
 {"captured": {"Active": true, "BusinessReason": "Increased workload - outgoing and incoming wire volume has doubled over the past year", "RequestType": "New", "Department": "Treasury Operations", "PrimaryPurpose": "Lead a function or process", "DailyWork": "Reviews and releases outgoing domestic and international wire requests (about 150 a day) after verifying callbacks and authorizations; investigates and resolves incoming wire exceptions and returns; monitors the Fed and SWIFT queues during the day and escalates delays; reconciles the daily wire general ledger accounts; screens wires against OFAC and escalates potential matches to BSA; answers wire status questions from branches and relationship managers; maintains wire procedures; helps train new operations staff on the wire platform", "ReportsTo": "Treasury Operations Manager", "HasDirectReports": "No", "DirectReportCount": "", "OwnedScope": "The daily wire release process and wire exception queue; the wire procedures manual", "Decisions": "Releases wires within established authorization limits and approves routine exception resolutions; escalates wires over limit, potential OFAC matches, and suspected fraud to the manager or BSA", "Sales": "No", "RelationshipManager": "No", "NMLS": "No", "Education": "Bachelor's Degree - Finance or Business", "EducationRequirement": "Preferred", "Experience": "2-4 Years - wire transfer operations at a bank", "LicenseStatus": "Not Applicable", "LicenseDetails": "", "RequestedTitle": "Wire Operations Specialist II", "ClassificationNotes": ""}, "people_leadership": "Individual Contributor", "readiness_review": "{\"ready_to_draft\": true, \"section_readiness\": [{\"section\": \"Purpose\", \"status\": \"ready\", \"note\": \"\"}, {\"section\": \"Principal Duties\", \"status\": \"ready\", \"note\": \"\"}, {\"section\": \"People Leadership\", \"status\": \"ready\", \"note\": \"\"}, {\"section\": \"Scope and Decisions\", \"status\": \"ready\", \"note\": \"\"}], \"questions\": [], \"governance_concerns\": [], \"hr_flags\": []}"}
 
-CurrentDraft: (leave empty)
-RevisionRequest: (leave empty)
+CurrentDraft: (none)
+RevisionRequest: (none)
 
-EXPECT: purpose opens 'The Wire Operations Specialist II is responsible for', 3-5 sentences; 8-15 duties, third-person verbs, no traits or 'other duties'; education 'Bachelor's Degree in Finance, Business or related field. Preferred Or' + equivalency line; experience '2-4 years of wire transfer operations experience ... Required'; certifications ''; change_summary ''.
+EXPECT: purpose opens 'The Wire Operations Specialist II is responsible for', 3-5 sentences; 8-15 duties as {"text": ...} objects with third-person verbs, no traits or 'other duties'; education 'Bachelor's Degree in Finance, Business or related field. Preferred Or' plus the equivalency line; work_experience names wire transfer operations experience; certifications ''; change_summary ''.
 
 
-TEST 2 - REVISION
-IntakeJSON: same as Test 1
-CurrentDraft: paste the full JSON output from Test 1
+TEST B - REVISION (both filled in)
+IntakeJSON: same as Test A
+CurrentDraft: paste the full JSON output from Test A
 RevisionRequest:
 Add that the role backs up the ACH team when they're short-staffed, and remove the training duty.
 
-EXPECT: one ACH backup duty added, training duty removed, all other text identical to Test 1; change_summary describes both changes.
+EXPECT: ACH backup duty added, training duty removed, all other text identical to Test A; change_summary describes both changes; notes, questions, and flags cover only this revision.
 
 
-TEST 3 - GOVERNANCE (Lead asked to supervise)
-IntakeJSON: same as Test 1, but change RequestedTitle to "Wire Operations Lead"
-CurrentDraft: paste the Test 1 output
+TEST C - OPTIONAL FIELDS MISSING (no education, no title, no license status, experience range only)
+IntakeJSON:
+{"captured": {"Active": true, "BusinessReason": "Increased workload - outgoing and incoming wire volume has doubled over the past year", "RequestType": "New", "Department": "Treasury Operations", "PrimaryPurpose": "Lead a function or process", "DailyWork": "Reviews and releases outgoing domestic and international wire requests (about 150 a day) after verifying callbacks and authorizations; investigates and resolves incoming wire exceptions and returns; monitors the Fed and SWIFT queues during the day and escalates delays; reconciles the daily wire general ledger accounts; screens wires against OFAC and escalates potential matches to BSA; answers wire status questions from branches and relationship managers; maintains wire procedures; helps train new operations staff on the wire platform", "ReportsTo": "Treasury Operations Manager", "HasDirectReports": "No", "DirectReportCount": "", "OwnedScope": "The daily wire release process and wire exception queue; the wire procedures manual", "Decisions": "Releases wires within established authorization limits and approves routine exception resolutions; escalates wires over limit, potential OFAC matches, and suspected fraud to the manager or BSA", "Sales": "No", "RelationshipManager": "No", "NMLS": "No", "Education": "", "EducationRequirement": "", "Experience": "2-4 Years", "LicenseStatus": "", "LicenseDetails": "", "RequestedTitle": "", "ClassificationNotes": ""}, "people_leadership": "Individual Contributor", "readiness_review": ""}
+
+CurrentDraft: (none)
+RevisionRequest: (none)
+
+EXPECT: purpose opens 'This position is responsible for'; education '' with a question asking for minimum education; work_experience still names a type of experience from the work described or asks; certifications ''; no invented values.
+
+
+TEST D - NO CHANGE REQUESTED (draft present, request blank)
+IntakeJSON: same as Test A
+CurrentDraft: paste the Test A output
+RevisionRequest: (none)
+
+EXPECT: output identical to CurrentDraft; change_summary 'No changes requested.'
+
+
+TEST E - GOVERNANCE (Lead asked to supervise)
+IntakeJSON: same as Test A, but change RequestedTitle to "Wire Operations Lead"
+CurrentDraft: paste the Test A output
 RevisionRequest:
 Add that the Lead conducts the annual performance reviews for the two specialists.
 
-EXPECT: no performance-review duty added; notes_for_manager explains Lead is an Individual Contributor role; hr_flags includes a 'Job Architecture review:' or 'People leadership review:' flag.
+EXPECT: no performance-review duty; notes_for_manager explains Lead is an Individual Contributor role; hr_flags has a 'Job Architecture review:' or 'People leadership review:' item.

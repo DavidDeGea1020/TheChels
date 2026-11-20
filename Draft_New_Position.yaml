@@ -48,8 +48,8 @@ beginDialog:
                 },
                 JSONFormat.FlattenValueTables
             )
-          CurrentDraft: =Global.NewPositionDraft
-          RevisionRequest: =If(IsBlank(Global.NewPositionDraft), "", Topic.RevisionRequest)
+          CurrentDraft: =If(IsBlank(Global.NewPositionDraft), "(none)", Global.NewPositionDraft)
+          RevisionRequest: =If(IsBlank(Global.NewPositionDraft) || IsBlank(Topic.RevisionRequest), "(none)", Topic.RevisionRequest)
 
       output:
         binding:
@@ -80,12 +80,12 @@ beginDialog:
     - kind: SetVariable
       id: setVariable_dpDuties
       variable: Topic.DutiesText
-      value: =Concat(Table(Topic.D.principal_duties), "- " & Text(ThisRecord.Value), Char(10))
+      value: =Concat(Table(Topic.D.principal_duties), "- " & Text(ThisRecord.Value.text), Char(10))
 
     - kind: SetVariable
       id: setVariable_dpIntro
       variable: Topic.Intro
-      value: =If(Topic.WasRevision, "Here's the updated draft.", "Here's a first draft based on what you've shared.")
+      value: =If(!Topic.WasRevision, "Here's a first draft based on what you've shared.", Text(Topic.D.change_summary) = "No changes requested.", "Here's the current draft.", "Here's the updated draft.")
 
     - kind: SendActivity
       id: sendActivity_dpShow
