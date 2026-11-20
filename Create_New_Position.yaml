@@ -74,6 +74,11 @@ beginDialog:
       variable: Global.NewPositionDraft
       value: =""
 
+    - kind: SetVariable
+      id: setVariable_npResetKSAs
+      variable: Global.NewPositionKSAs
+      value: =""
+
     - kind: SendActivity
       id: sendActivity_npOpening
       activity:

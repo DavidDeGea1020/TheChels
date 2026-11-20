@@ -175,8 +175,8 @@ Each section below covers:
 
   Each is marked **Required** or **Preferred**. [Builder]
 - **House style:** [Corpus]
-  - Format: **"[Degree] in [field(s)] or related field. Required|Preferred"**. Example: "Bachelor's Degree in Business, Finance or related field. Required"
-  - Then the standard equivalency sentence, which must always be kept: [Builder]
+  - Format: **"[Degree] in [field(s)] or related field. Required Or"** (or **"Preferred Or"**). The trailing "Or" is part of the JD system's format and must always be included, matching the update workflow's quality guide. Example: "Bachelor's Degree in Business, Finance or related field. Required Or"
+  - Keep the standard equivalency language: [Builder]
     > "An equivalent combination of education and relevant professional experience may be considered in lieu of a degree."
   - Bachelor's appears in 77% of JDs; High School Diploma or GED appears in 18%.
 - **Does not belong:** certifications (B10), years of experience (B9).
@@ -332,11 +332,12 @@ The agent runs these before showing any draft, and the reviewer prompt checks th
 4. **Scope and structure:** who the role reports to; direct reports and how many; what it owns; what it decides versus escalates.
 5. **Market-facing questions:** Sales, then Relationship Manager, then NMLS. Simple prompts, no branching. [Builder]
 6. **Qualifications:** education (and whether required or preferred), experience range, and certifications. Keep the equivalency language. [Builder]
-7. **Draft the Purpose and Principal Duties** for the manager to review.
-8. **Draft the KSAs** in K → S → A order, tied to the duties, for the manager to review. [Builder]
-9. **Title and level:** the requested title, then the Part C review. Any concerns go to HR as flags.
-10. **Comparable jobs:** retrieve similar existing JDs, compare (C4), and flag overlaps.
-11. **Final review and manager confirmation.** [Builder]
+7. **Requested title:** asked last in the intake, once the work is fully described. Recorded, not judged.
+8. **Draft the Purpose and Principal Duties** for the manager to review.
+9. **Draft the KSAs** in K → S → A order, tied to the duties, for the manager to review. [Builder]
+10. **Title and level review:** the Part C review of the requested title against the drafted JD. Any concerns go to HR as flags.
+11. **Comparable jobs:** retrieve similar existing JDs, compare (C4), and flag overlaps.
+12. **Final review and manager confirmation.** [Builder]
 
 ### E2. Probing like HR
 
@@ -374,4 +375,3 @@ The agent runs these before showing any draft, and the reviewer prompt checks th
 - **Person or candidate language in Purpose** ("Candidate will be…", "the incumbent…").
 - **Mixed verb forms in Duties** (imperative vs. third person) and **ungrouped KSAs**.
 - **Levels sharing the same experience range** in some ladders.
-- **Export artifacts:** a trailing "Or" at the end of Education text is an export artifact. Don't reproduce it.

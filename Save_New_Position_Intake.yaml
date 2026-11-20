@@ -50,13 +50,13 @@ inputs:
 
   - kind: AutomaticTaskInput
     propertyName: OwnedScope
-    description: "Functions, processes, portfolios, systems, or client relationships the role owns."
+    description: "All functions, processes, portfolios, systems, or client relationships the role owns, and what it supports. Include earlier details, not only the newest."
     entity: StringPrebuiltEntity
     shouldPromptUser: false
 
   - kind: AutomaticTaskInput
     propertyName: Decisions
-    description: "Decisions the role makes on its own, and matters it escalates or needs approval for."
+    description: "All decisions the role makes on its own, and matters it escalates or needs approval for. Include earlier details, not only the newest."
     entity: StringPrebuiltEntity
     shouldPromptUser: false
 
@@ -241,7 +241,7 @@ beginDialog:
       id: conditionGroup_npReadiness
       conditions:
         - id: conditionItem_npReadiness
-          condition: =CountRows(Filter(FirstN(Topic.Checklist, 10), Needed)) = 0 && Global.NewPositionReady <> true && Global.NewPositionReviewRuns < 2
+          condition: =CountRows(Filter(FirstN(Topic.Checklist, 10), Needed)) = 0 && Global.NewPositionReady <> true && Global.NewPositionReviewRuns < 4
           actions:
             - kind: InvokeAIBuilderModelAction
               id: invokeAIBuilderModelAction_npReadiness
@@ -268,7 +268,7 @@ beginDialog:
             - kind: SetVariable
               id: setVariable_npReady
               variable: Global.NewPositionReady
-              value: =Boolean(ParseJSON(Topic.Readiness.text).ready_to_draft) || Global.NewPositionReviewRuns >= 2
+              value: =Boolean(ParseJSON(Topic.Readiness.text).ready_to_draft) || Global.NewPositionReviewRuns >= 4
 
     - kind: SetVariable
       id: setVariable_npStatus
@@ -356,12 +356,12 @@ inputType:
 
     OwnedScope:
       displayName: OwnedScope
-      description: "Functions, processes, portfolios, systems, or client relationships the role owns."
+      description: "All functions, processes, portfolios, systems, or client relationships the role owns, and what it supports. Include earlier details, not only the newest."
       type: String
 
     Decisions:
       displayName: Decisions
-      description: "Decisions the role makes on its own, and matters it escalates or needs approval for."
+      description: "All decisions the role makes on its own, and matters it escalates or needs approval for. Include earlier details, not only the newest."
       type: String
 
     Sales:
@@ -418,7 +418,7 @@ outputType:
   properties:
     ReadinessReview:
       displayName: ReadinessReview
-      description: "JSON from the HR readiness check of the work description, or empty if it has not run. If IntakeStatus.ready_to_draft is false and this lists questions, ask those first, one per turn, in order and in your own words, before next_item. Mention governance_concerns once, neutrally, only when relevant; never debate them. hr_flags carry to the final summary."
+      description: "JSON from the HR readiness check of the work description, or empty if it has not run. If IntakeStatus.ready_to_draft is false and this lists questions, ask only the first one, in your own words, before next_item; the check re-runs after each answer and returns what is still needed. Mention governance_concerns once, neutrally, only when relevant; never debate them. hr_flags carry to the final summary."
       type: String
 
     IntakeStatus:

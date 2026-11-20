@@ -1,0 +1,148 @@
+kind: AdaptiveDialog
+inputs:
+  - kind: AutomaticTaskInput
+    propertyName: RevisionRequest
+    description: "The manager's requested changes to the current KSAs, in their words (for example: remove S2, reword A1, add knowledge of ACH rules). Leave empty for the first draft."
+    entity: StringPrebuiltEntity
+    shouldPromptUser: false
+
+modelDescription: "Drafts or revises the new position's Knowledge, Skills, and Abilities from the intake and the approved Purpose and Principal Duties, and shows them to the manager. Call it after the manager approves the Purpose and Duties, and again whenever the manager asks to accept, reject, edit, add, or remove KSAs (pass their changes as RevisionRequest)."
+beginDialog:
+  kind: OnRecognizedIntent
+  id: main
+  intent: {}
+  actions:
+    - kind: ConditionGroup
+      id: conditionGroup_ksNotReady
+      conditions:
+        - id: conditionItem_ksNotReady
+          condition: =IsBlank(Global.NewPositionDraft)
+          actions:
+            - kind: SetVariable
+              id: setVariable_ksStatusNotReady
+              variable: Topic.KSAStatus
+              value: ="NotReady"
+
+            - kind: EndDialog
+              id: endDialog_ksNotReady
+
+    - kind: InvokeAIBuilderModelAction
+      id: invokeAIBuilderModelAction_ksBuild
+      input:
+        binding:
+          IntakeJSON: |-
+            =JSON(
+                {
+                    captured: Global.NewPosition,
+                    people_leadership: Switch(
+                        Global.NewPosition.HasDirectReports,
+                        "No", "Individual Contributor",
+                        "Yes", If(
+                            IsBlank(Global.NewPosition.DirectReportCount), "Pending - number of direct reports not captured",
+                            IfError(Value(Global.NewPosition.DirectReportCount), 0) >= 2, "This Position Manages People",
+                            "HR review - fewer than 2 direct reports"
+                        ),
+                        "Not yet captured"
+                    )
+                },
+                JSONFormat.FlattenValueTables
+            )
+          DraftJSON: =Global.NewPositionDraft
+          CurrentKSAs: =If(IsBlank(Global.NewPositionKSAs), "(none)", Global.NewPositionKSAs)
+          RevisionRequest: =If(IsBlank(Global.NewPositionKSAs) || IsBlank(Topic.RevisionRequest), "(none)", Topic.RevisionRequest)
+
+      output:
+        binding:
+          predictionOutput: Topic.KSAResult
+
+      aIModelId: PASTE_KSA_PROMPT_ID
+
+    - kind: SetVariable
+      id: setVariable_ksWasRevision
+      variable: Topic.WasRevision
+      value: =!IsBlank(Global.NewPositionKSAs)
+
+    - kind: SetVariable
+      id: setVariable_ksSave
+      variable: Global.NewPositionKSAs
+      value: =Topic.KSAResult.text
+
+    - kind: SetVariable
+      id: setVariable_ksParse
+      variable: Topic.K
+      value: =ParseJSON(Topic.KSAResult.text)
+
+    - kind: SetVariable
+      id: setVariable_ksKnowledge
+      variable: Topic.KnowledgeText
+      value: |-
+        =With({t: Table(Topic.K.knowledge)}, Concat(Sequence(CountRows(t)), "K" & Value & ". " & Text(Index(t, Value).Value.text) & " (" & Text(Index(t, Value).Value.supports) & ")", Char(10) & Char(10)))
+
+    - kind: SetVariable
+      id: setVariable_ksSkills
+      variable: Topic.SkillsText
+      value: |-
+        =With({t: Table(Topic.K.skills)}, Concat(Sequence(CountRows(t)), "S" & Value & ". " & Text(Index(t, Value).Value.text) & " (" & Text(Index(t, Value).Value.supports) & ")", Char(10) & Char(10)))
+
+    - kind: SetVariable
+      id: setVariable_ksAbilities
+      variable: Topic.AbilitiesText
+      value: |-
+        =With({t: Table(Topic.K.abilities)}, Concat(Sequence(CountRows(t)), "A" & Value & ". " & Text(Index(t, Value).Value.text) & " (" & Text(Index(t, Value).Value.supports) & ")", Char(10) & Char(10)))
+
+    - kind: SetVariable
+      id: setVariable_ksIntro
+      variable: Topic.Intro
+      value: =If(!Topic.WasRevision, "Here are draft Knowledge, Skills, and Abilities based on the approved duties. Each one shows the duties it supports.", Text(Topic.K.change_summary) = "No changes requested.", "Here are the current KSAs.", "Here are the updated KSAs.")
+
+    - kind: SendActivity
+      id: sendActivity_ksShow
+      activity:
+        text:
+          - |-
+            {Topic.Intro}
+
+            **Knowledge**
+
+            {Topic.KnowledgeText}
+
+            ---
+
+            **Skills**
+
+            {Topic.SkillsText}
+
+            ---
+
+            **Abilities**
+
+            {Topic.AbilitiesText}
+
+    - kind: SetVariable
+      id: setVariable_ksStatus
+      variable: Topic.KSAStatus
+      value: =If(Topic.WasRevision, "Revised", "Drafted")
+
+    - kind: SetVariable
+      id: setVariable_ksReviewOut
+      variable: Topic.KSAReview
+      value: =Topic.KSAResult.text
+
+inputType:
+  properties:
+    RevisionRequest:
+      displayName: RevisionRequest
+      description: "The manager's requested changes to the current KSAs, in their words (for example: remove S2, reword A1, add knowledge of ACH rules). Leave empty for the first draft."
+      type: String
+
+outputType:
+  properties:
+    KSAReview:
+      displayName: KSAReview
+      description: "JSON from the KSA step. The KSAs were already shown word for word with their numbers (K1, S1, A1); never repeat, re-show, or paraphrase them. Use change_summary (one line), notes_for_manager (brief), questions_for_manager, and hr_flags (carry to the final summary). Each array item's text is in its text field."
+      type: String
+
+    KSAStatus:
+      displayName: KSAStatus
+      description: "Drafted or Revised: the KSAs are on screen. In one or two short lines, mention the change_summary and any notes, then ask the first questions_for_manager item, or if there are none, ask the manager to accept them or say which to change, remove, or add (they can refer to K1, S2, A3). NotReady: there is no approved Purpose and Duties draft yet; return to drafting."
+      type: String

@@ -1,0 +1,49 @@
+Use (none) wherever an input should be empty. That is what the topic sends.
+
+TEST A - FIRST DRAFT
+IntakeJSON:
+{"captured": {"Active": true, "BusinessReason": "Increased workload - outgoing and incoming wire volume has doubled over the past year", "RequestType": "New", "Department": "Treasury Operations", "PrimaryPurpose": "Lead a function or process", "DailyWork": "Reviews and releases outgoing domestic and international wire requests (about 150 a day) after verifying callbacks and authorizations; investigates and resolves incoming wire exceptions and returns; monitors the Fed and SWIFT queues during the day and escalates delays; reconciles the daily wire general ledger accounts; screens wires against OFAC and escalates potential matches to BSA; answers wire status questions from branches and relationship managers; maintains wire procedures; helps train new operations staff on the wire platform", "ReportsTo": "Treasury Operations Manager", "HasDirectReports": "No", "DirectReportCount": "", "OwnedScope": "The daily wire release process and wire exception queue; the wire procedures manual", "Decisions": "Releases wires within established authorization limits and approves routine exception resolutions; escalates wires over limit, potential OFAC matches, and suspected fraud to the manager or BSA", "Sales": "No", "RelationshipManager": "No", "NMLS": "No", "Education": "Bachelor's Degree - Finance or Business", "EducationRequirement": "Preferred", "Experience": "2-4 Years - wire transfer operations at a bank", "LicenseStatus": "Not Applicable", "LicenseDetails": "", "RequestedTitle": "Wire Operations Specialist II", "ClassificationNotes": ""}, "people_leadership": "Individual Contributor"}
+
+DraftJSON:
+{"purpose": "The Wire Operations Specialist II is responsible for the accurate and timely processing of outgoing and incoming wire transfers for Treasury Operations. The role reviews and releases wire requests, resolves wire exceptions, and reconciles daily wire activity. It supports branches and relationship managers with wire inquiries and maintains the department's wire procedures.", "principal_duties": [{"text": "Reviews and releases outgoing domestic and international wire requests after verifying callbacks and authorizations."}, {"text": "Investigates and resolves incoming wire exceptions and returns."}, {"text": "Monitors Federal Reserve and SWIFT queues throughout the day and escalates delays to management."}, {"text": "Reconciles daily wire general ledger accounts to ensure accuracy and timely resolution of differences."}, {"text": "Screens wire transactions against OFAC lists and escalates potential matches to BSA."}, {"text": "Responds to wire status inquiries from branches and relationship managers."}, {"text": "Approves routine exception resolutions within established authorization limits."}, {"text": "Escalates wires over authorized limits and suspected fraud to the Treasury Operations Manager."}, {"text": "Maintains the wire procedures manual to reflect current processes."}, {"text": "Assists with training new operations staff on the wire platform."}], "education": "Bachelor's Degree in Finance, Business or related field. Preferred Or\nAn equivalent combination of education and relevant professional experience may be considered in lieu of a degree.", "work_experience": [{"text": "2-4 years of wire transfer operations experience in a bank. Required"}], "certifications": "", "change_summary": "", "notes_for_manager": [], "questions_for_manager": [], "hr_flags": []}
+
+CurrentKSAs: (none)
+RevisionRequest: (none)
+
+EXPECT: 3-4 knowledge, 3-4 skills, 3-4 abilities; knowledge items start with Knowledge of / Working knowledge of / In-depth knowledge of / Understanding of; skills with Proficiency in / Skill in / Strong ... skills; abilities with Ability to; every item has a supports value naming real duty numbers (1-10); no experience, degree, certification, NMLS, or personality statements; nothing about systems not named in the duties.
+
+
+TEST B - REVISION
+IntakeJSON and DraftJSON: same as Test A
+CurrentKSAs: paste the full JSON output from Test A
+RevisionRequest:
+Remove S2 and add knowledge of ACH processing rules.
+
+EXPECT: S2 removed; ACH knowledge added ONLY if supported (it is not in the duties, so expect a note or question instead of an invented item); all other items word for word; change_summary describes the change.
+
+
+TEST C - NO CHANGE REQUESTED
+IntakeJSON and DraftJSON: same as Test A
+CurrentKSAs: paste the Test A output
+RevisionRequest: (none)
+
+EXPECT: output identical to CurrentKSAs; change_summary 'No changes requested.'
+
+
+TEST D - PEOPLE LEADER
+IntakeJSON: same as Test A, but change people_leadership to "This Position Manages People"
+DraftJSON: same as Test A
+CurrentKSAs: (none)
+RevisionRequest: (none)
+
+EXPECT: abilities include planning, delegating, coaching, or developing staff.
+
+
+TEST E - LEAD (IC) GOVERNANCE
+IntakeJSON: same as Test A, but change RequestedTitle to "Wire Operations Lead"
+DraftJSON: same as Test A
+CurrentKSAs: paste the Test A output
+RevisionRequest:
+Add an ability to evaluate and discipline the specialists.
+
+EXPECT: no evaluate or discipline item; notes_for_manager explains Lead is an Individual Contributor role; an hr_flag starting "People leadership review:" or "Job Architecture review:".

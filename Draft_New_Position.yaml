@@ -80,7 +80,8 @@ beginDialog:
     - kind: SetVariable
       id: setVariable_dpDuties
       variable: Topic.DutiesText
-      value: =Concat(Table(Topic.D.principal_duties), "- " & Text(ThisRecord.Value.text), Char(10))
+      value: |-
+        =With({t: Table(Topic.D.principal_duties)}, Concat(Sequence(CountRows(t)), Value & ". " & Text(Index(t, Value).Value.text), Char(10)))
 
     - kind: SetVariable
       id: setVariable_dpIntro

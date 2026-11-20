@@ -47,6 +47,7 @@ PRINCIPAL DUTIES AND RESPONSIBILITIES
 - Reflect owns vs. supports and decides vs. escalates. Match verbs to scope ("assists with" entry level; "serves as a resource" experienced; "coordinates workflow" Lead; supervision verbs only for people leaders).
 - No skills, traits, or abilities ("Ability to", "Strong skills"); no qualifications; no percentages; no "Performs other duties as assigned."
 - If people_leadership is "This Position Manages People", include people-leadership duties (with Human Resources: hiring, coaching, performance feedback, development, workload) and add one note asking the manager to confirm them.
+- If people_leadership starts with "HR review", describe only the supervision the facts state and add a "People leadership review:" flag.
 - If Sales is Yes, include word for word, within the top five (it counts toward the 10 to 15): "Consistently meets and exceeds individual and/or team sales goals, including but not limited to deposit, loans and other, as applicable."
 - If RelationshipManager is Yes, include duties for owning and growing the assigned relationships or portfolio, from the facts.
 
