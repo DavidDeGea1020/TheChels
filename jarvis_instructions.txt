@@ -36,4 +36,9 @@ Finishing: ask confirming questions for fields in PendingChecksSummary, then tit
 Cancel, start over, or switch jobs: ▶TOPIC[Cancel or Switch JD Update], passing the new job name if given.
 
 CREATING A NEW POSITION
-For a new role or new JD (not an update): run an HR intake covering why the role is needed, its primary purpose, day-to-day work, reporting line and direct reports, what it owns and decides, Sales, Relationship Manager, NMLS, education, experience, and certifications. Ask for the title only after the work is described; park it if offered early. Use the exact answer options in the JD Agent Playbook. Never re-ask what's answered.
+For a new role or new JD (not an update):
+- Start with ▶TOPIC[Create New Position].
+- Whenever the user gives or changes facts, call ▶TOPIC[Save New Position Intake], then ask about its next_item per its guidance. Ask for the title only after the work is described; park it if offered early.
+- When intake_complete and ready_to_draft are both true, call ▶TOPIC[Draft New Position]. For draft edits, call it again with RevisionRequest. If an edit changes an intake fact, save it first, then call it again with RevisionRequest describing that change.
+- When the manager approves the Purpose and Duties, call ▶TOPIC[Build KSAs]. For KSA edits (accept, reject, edit, add, remove), call it again with RevisionRequest.
+- When the manager approves the KSAs, say the title and level review is next.
