@@ -1,0 +1,190 @@
+kind: AdaptiveDialog
+modelDescription: "Compares the new position with the most related existing job descriptions (similar work and the same job ladder) and shows the comparison to the manager. Call it after the title and level review is done."
+beginDialog:
+  kind: OnRecognizedIntent
+  id: main
+  intent: {}
+  actions:
+    - kind: ConditionGroup
+      id: conditionGroup_fsNotReady
+      conditions:
+        - id: conditionItem_fsNotReady
+          condition: =IsBlank(Global.NewPositionKSAs) || IsBlank(Global.NewPositionDraft)
+          actions:
+            - kind: SetVariable
+              id: setVariable_fsStatusNotReady
+              variable: Topic.ComparisonStatus
+              value: ="NotReady"
+
+            - kind: EndDialog
+              id: endDialog_fsNotReady
+
+    - kind: SetVariable
+      id: setVariable_fsNewPosition
+      variable: Topic.NewPositionJSON
+      value: |-
+        =JSON(
+            {
+                captured: Global.NewPosition,
+                people_leadership: Switch(
+                    Global.NewPosition.HasDirectReports,
+                    "No", "Individual Contributor",
+                    "Yes", If(
+                        IsBlank(Global.NewPosition.DirectReportCount), "Pending - number of direct reports not captured",
+                        IfError(Value(Global.NewPosition.DirectReportCount), 0) >= 2, "This Position Manages People",
+                        "HR review - fewer than 2 direct reports"
+                    ),
+                    "Not yet captured"
+                ),
+                draft: Global.NewPositionDraft,
+                ksas: Global.NewPositionKSAs
+            },
+            JSONFormat.FlattenValueTables
+        )
+
+    - kind: InvokeFlowAction
+      id: invokeFlowAction_fsCatalog
+      input: {}
+      output:
+        binding:
+          catalog: Topic.Catalog
+
+      flowId: PASTE_CATALOG_FLOW_ID
+
+    - kind: InvokeAIBuilderModelAction
+      id: invokeAIBuilderModelAction_fsShortlist
+      input:
+        binding:
+          NewPositionJSON: =Topic.NewPositionJSON
+          Catalog: =Topic.Catalog
+
+      output:
+        binding:
+          predictionOutput: Topic.Shortlist
+
+      aIModelId: PASTE_SHORTLIST_PROMPT_ID
+
+    - kind: SetVariable
+      id: setVariable_fsCodes
+      variable: Topic.Codes
+      value: =Text(ParseJSON(Topic.Shortlist.text).job_codes)
+
+    - kind: ConditionGroup
+      id: conditionGroup_fsNoMatches
+      conditions:
+        - id: conditionItem_fsNoMatches
+          condition: =IsBlank(Topic.Codes)
+          actions:
+            - kind: SetVariable
+              id: setVariable_fsSaveNone
+              variable: Global.NewPositionComparison
+              value: |-
+                ="{""result"": ""no_matches"", ""comparisons"": [], ""hr_flags"": []}"
+
+            - kind: SendActivity
+              id: sendActivity_fsNone
+              activity:
+                text:
+                  - |-
+                    **Comparison with existing jobs**
+
+                    I checked this position against all existing job descriptions and didn't find any closely related jobs to compare it with.
+
+            - kind: SetVariable
+              id: setVariable_fsStatusNone
+              variable: Topic.ComparisonStatus
+              value: ="no_matches"
+
+            - kind: SetVariable
+              id: setVariable_fsReviewNone
+              variable: Topic.ComparisonReview
+              value: =Global.NewPositionComparison
+
+            - kind: EndDialog
+              id: endDialog_fsNone
+
+    - kind: InvokeFlowAction
+      id: invokeFlowAction_fsDetails
+      input:
+        binding:
+          text: =Topic.Codes
+
+      output:
+        binding:
+          jobs: Topic.ExistingJobs
+
+      flowId: PASTE_DETAILS_FLOW_ID
+
+    - kind: InvokeAIBuilderModelAction
+      id: invokeAIBuilderModelAction_fsCompare
+      input:
+        binding:
+          NewPositionJSON: =Topic.NewPositionJSON
+          ExistingJobsJSON: =If(IsBlank(Topic.ExistingJobs), "(none)", Topic.ExistingJobs)
+          MatchesJSON: =Topic.Shortlist.text
+
+      output:
+        binding:
+          predictionOutput: Topic.Compare
+
+      aIModelId: PASTE_COMPARE_PROMPT_ID
+
+    - kind: SetVariable
+      id: setVariable_fsSave
+      variable: Global.NewPositionComparison
+      value: =Topic.Compare.text
+
+    - kind: SetVariable
+      id: setVariable_fsParse
+      variable: Topic.C
+      value: =ParseJSON(Topic.Compare.text)
+
+    - kind: SetVariable
+      id: setVariable_fsCompText
+      variable: Topic.CompText
+      value: |-
+        =Concat(
+            Table(Topic.C.comparisons),
+            "**" & Text(ThisRecord.Value.title) & "** (" & Text(ThisRecord.Value.similarity) & " similarity)" & Char(10) &
+            "- Shared: " & Text(ThisRecord.Value.overlap) & Char(10) &
+            "- Different: " & Text(ThisRecord.Value.difference),
+            Char(10) & Char(10)
+        )
+
+    - kind: SetVariable
+      id: setVariable_fsMessage
+      variable: Topic.ManagerMessage
+      value: =Text(Topic.C.manager_message)
+
+    - kind: SendActivity
+      id: sendActivity_fsShow
+      activity:
+        text:
+          - |-
+            **Comparison with existing jobs**
+
+            {Topic.CompText}
+
+            {Topic.ManagerMessage}
+
+    - kind: SetVariable
+      id: setVariable_fsStatus
+      variable: Topic.ComparisonStatus
+      value: =Text(Topic.C.result)
+
+    - kind: SetVariable
+      id: setVariable_fsReviewOut
+      variable: Topic.ComparisonReview
+      value: =Topic.Compare.text
+
+outputType:
+  properties:
+    ComparisonReview:
+      displayName: ComparisonReview
+      description: "JSON from the comparison with existing jobs. The comparison and manager_message were already shown word for word; never repeat or reword them. Use questions_for_manager, and carry hr_flags to the final summary. Never mention job codes, grade, or pay, never suggest a title, and never suggest changing an existing job."
+      type: String
+
+    ComparisonStatus:
+      displayName: ComparisonStatus
+      description: "distinct or no_matches: the result is on screen; add nothing about it and say the final review is next. overlaps: the result is on screen; ask the first questions_for_manager item. If the manager's answer changes the work, save it with Save New Position Intake and update the draft with Draft New Position (RevisionRequest), then call this topic again; otherwise the flags go to HR and you continue to the final review. NotReady: the KSAs are not approved yet; return to the KSAs."
+      type: String

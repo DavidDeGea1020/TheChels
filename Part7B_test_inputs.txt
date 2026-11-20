@@ -1,0 +1,637 @@
+PART 7B TEST DATA (built from your real JD export)
+
+========================================
+PROMPT 1: SHORTLIST SIMILAR JOBS
+========================================
+Catalog (use for every shortlist test):
+ADAD05 | Facilities Management Director | This Position Manages People
+ASGS16 | Building Maintenance Custodian I | Individual contributor
+ASGS21 | Facilities Manager | This Position Manages People
+ASGS23 | Facilities Maintenance Technician I | Individual contributor
+ASGS24 | Facilities Maintenance Technician II | Individual contributor
+ASGS26 | Facilities Coordinator | Individual contributor
+AUAD10 | Auditor Senior | Individual contributor
+AUAD100 | BSA Investigator Senior | Individual contributor
+AUAD101 | BSA Monitoring Analyst | Individual contributor
+AUAD102 | BSA Monitoring Analyst Senior | Individual contributor
+AUAD105 | Enterprise Data Officer | Individual contributor
+AUAD107 | BSA/AML Data Analyst | Individual contributor
+AUAD108 | BSA Specialist Team Leader | This Position Manages People
+AUAD111 | BSA Deputy and Anti-Bribery Corruption Officer | This Position Manages People
+AUAD114 | IT Audit and Analytics Director | This Position Manages People
+AUAD115 | Audit Director | This Position Manages People
+AUAD117 | BSA Quality Assurance Analyst Senior | Individual contributor
+AUAD119 | BSA Testing and Monitoring Analyst | Individual contributor
+AUAD121 | Quality Assurance Auditor | Individual contributor
+AUAD122 | Third Party Risk Officer | Individual contributor
+AUAD123 | BSA Advisor | Individual contributor
+AUAD125 | Data Analyst II | Individual contributor
+AUAD127 | Enterprise Information Risk Management Officer | Individual contributor
+AUAD128 | Enterprise Risk Management Director | This Position Manages People
+AUAD129 | Operational Risk Program Lead | Individual contributor
+AUAD130 | Chief Enterprise Risk Management and Legal Officer | This Position Manages People
+AUAD131 | Business Risk Control Officer | Individual contributor
+AUAD132 | Enterprise Risk Governance and Strategic Initiatives Officer | Individual contributor
+AUAD133 | Operational Risk Management Officer Sr | Individual contributor
+AUAD134 | Operational Risk Officer Senior - RCSA | Individual contributor
+AUAD135 | Operational Risk Management Lead  - RCSA | Individual contributor
+AUAD136 | Enterprise Risk Management Data Analyst | Individual contributor
+AUAD137 | Chief Compliance Officer | This Position Manages People
+AUAD138 | Business Risk Control Officer Senior | Individual Contributor
+AUAD139 | Audit Data Analyst Senior | Individual Contributor
+AUAD140 | Financial Crime Data Governance Analyst | Individual Contributor
+AUAD141 | Internal Audit Analyst | Individual Contributor
+AUAD143 | Enterprise Change Management Program Lead | Individual Contributor
+AUAD16 | Staff Auditor | Individual contributor
+AUAD17 | IT Auditor | Individual contributor
+AUAD18 | Data Integration Manager | Individual contributor
+AUAD31 | Asset Recovery Officer-Senior | Individual contributor
+AUAD36 | BSA/AML and OFAC Officer | This Position Manages People
+AUAD39 | Financial Intelligence Unit Manager | This Position Manages People
+AUAD41 | Asset Recovery Officer III | Individual contributor
+AUAD44 | Operational Risk Management Director | This Position Manages People
+AUAD48 | Chief Information Security Officer | This Position Manages People
+AUAD53 | BSA Specialist | Individual contributor
+AUAD55 | BSA/AML Sanctions Analyst Senior | Individual contributor
+AUAD56 | BSA Monitoring Team Leader | This Position Manages People
+AUAD61 | Asset Recovery Manager | This Position Manages People
+AUAD62 | BSA High Risk Analyst I | Individual contributor
+AUAD63 | BSA High Risk Analyst II | Individual contributor
+AUAD67 | BSA Operations and Data Analytics Analyst Senior | Individual contributor
+AUAD68 | Sanctions and BSA Operations Manager | This Position Manages People
+AUAD73 | BSA High Risk Analyst III | Individual contributor
+AUAD83 | BSA Investigations Team Leader | This Position Manages People
+AUAD84 | Bank Secrecy Act High Risk Team Leader | This Position Manages People
+AUAD92 | IT Auditor Senior | Individual contributor
+AUAD95 | BSA Testing and Monitoring Team Leader | This Position Manages People
+AUAD98 | Credit Review Director | This Position Manages People
+AUAD99 | BSA Investigator | Individual contributor
+AUCP07 | Compliance Monitoring Manager | This Position Manages People
+AUCP10 | Model Risk Management Manager | This Position Manages People
+AUCP12 | Compliance Risk Officer | Individual contributor
+AUCP15 | Fraud Risk Investigator Senior | Individual contributor
+AUCP16 | Fraud Risk Investigator | Individual contributor
+AUCP21 | Compliance Monitoring Analyst III | Individual contributor
+AUCP23 | Fraud Director | This Position Manages People
+AUCP24 | Trust & Wealth Management Compliance Officer | Individual contributor
+AUCP25 | Fraud Risk Detection Lead | Individual contributor
+AUCP26 | Fraud Risk Detection Analyst | Individual contributor
+AUCP27 | Fraud Risk Investigation Analyst | Individual contributor
+AUCP29 | Community Reinvestment Act Specialist Junior | Individual contributor
+AUCP30 | Model Risk Management Analyst | Individual contributor
+AUCP31 | Financial Crimes Model Risk Management Analyst | Individual contributor
+AUCP33 | Community Reinvestment Act Analyst Senior | Individual contributor
+AUCP34 | Fair and Responsible Banking Officer | Individual contributor
+AUCP36 | Compliance Data and Monitoring Officer | Individual contributor
+AUCP37 | Fraud Risk Program Manager | This Position Manages People
+AUCP38 | Fraud Risk Support Analyst | Individual contributor
+AUCP39 | Wealth Management Compliance Associate | Individual Contributor
+AUCP40 | Compliance Monitoring Manager and Reg W Officer  | This Position Manages People
+AUCP41 | Compliance Monitoring Analyst Senior | Individual Contributor
+AUCP42 | Compliance Risk Officer Senior | Individual Contributor
+AUCP44 | Fraud Investigations Supervisor | This Position Manages People
+AUCP45 | Fraud Investigator Senior | Individual Contributor
+AUGS03 | Corporate Security Manager Senior | This Position Manages People
+AUGS04 | Physical Security Analyst | Individual contributor
+AUGS05 | Lobby Security Concierge | Individual contributor
+BRAD01 | Private Banking Executive | This Position Manages People
+EXAD00 | Chief Artificial Intelligence Officer | This Position Manages People
+EXAD02 | CEO & Vice Chairman of the Board | This Position Manages People
+EXAD14 | Business and Personal Banking Executive | This Position Manages People
+EXAD21 | Marketing Manager | Individual contributor
+EXAD23 | Chief Strategy Officer | This Position Manages People
+EXAD26 | Marketing and Events Coordinator | Individual contributor
+EXAD32 | Chief Audit Executive | This Position Manages People
+EXAD35 | Chief Business Development Officer | Individual contributor
+EXAD42 | Chief Banking Officer | This Position Manages People
+EXAD44 | Chief Wholesale and International Executive | This Position Manages People
+EXAD46 | Chief Wholesale Banking Officer | This Position Manages People
+EXAD97 | Chief Operations Officer | This Position Manages People
+FNAN00 | Assistant Controller Senior | This Position Manages People
+FNAN02 | Assistant Controller | This Position Manages People
+FNAN06 | Tax Manager | Individual contributor
+FNAN08 | Chief Financial Officer/Finance Executive | This Position Manages People
+FNAN11 | Controller | This Position Manages People
+FNAN13 | Chief Information Officer | This Position Manages People
+FNAN19 | Treasurer | This Position Manages People
+FNAN20 | Financial Analyst Senior | Individual contributor
+FNAN29 | Financial Systems Analyst-Senior | This Position Manages People
+FNAN41 | Financial Planning and Analysis Director | This Position Manages People
+FNAN43 | CECL Manager | Individual contributor
+FNAN44 | Investor Relations Officer Senior | Individual contributor
+FNAN45 | ALM and CECL Director | This Position Manages People
+FNAN46 | Financial Analyst - CECL | Individual contributor
+FNAN47 | Asset Liability Management Analyst | Individual contributor
+FNAN61 | Accountant II | Individual contributor
+FNAN64 | Accountant & Financial Analyst | Individual contributor
+FNAN65 | Accounts Payable & Reconciliation Specialist | Individual contributor
+FNAN67 | Finance Project Manager | Individual contributor
+FNAN69 | Accountant I | Individual contributor
+FNAN70 | Quantitative Analyst | Individual contributor
+FNAN72 | Treasury Strategy Officer | Individual contributor
+FNAN73 | Financial Risk Officer | Individual contributor
+FNAN74 | FX and Derivatives Sales Director | Individual contributor
+FNAN75 | Financial and Treasury Analyst Senior | Individual contributor
+FNAN76 | FX and Derivatives Officer | Individual contributor
+FNAN77 | Loan and Lease Operations and Accounting Manager | This Position Manages People
+FNAN78 | Specialty Finance Director | This Position Manages People
+FNAN79 | Financial Reporting Analyst Senior | Individual contributor
+FNAN80 | Specialty Finance Portfolio Manager | Individual contributor
+FNAN81 | Operations and Portfolio Support Specialist | Individual contributor
+FNCP02 | Financial Analyst Junior | Individual contributor
+FNCP08 | Accounting Clerk-Senior | Individual contributor
+FNCP15 | Financial Analyst-Business Intelligence | Individual contributor
+GSAD02 | Executive Assistant I | Individual contributor
+GSAD03 | Executive Assistant II | Individual contributor
+GSAD04 | Executive Assistant III | This Position Manages People
+GSAD07 | Executive Driver Specialist | Individual contributor
+GSAD08 | Executive Driver-Support Assistant | Individual contributor
+GSAD10 | Private Client Experience Coordinator | Individual contributor
+HRAD00 | HR Operations and Employee Relations Executive | This Position Manages People
+HRAD01 | Human Resources Business Partner Director | This Position Manages People
+HRAD04 | Human Resources Generalist Senior | Individual contributor
+HRAD05 | Benefits Manager | Individual contributor
+HRAD08 | Payroll Manager | Individual contributor
+HRAD16 | Chief Human Resources Officer | This Position Manages People
+HRAD21 | Talent Attraction Specialist | Individual contributor
+HRAD27 | Organizational Development Officer | Individual contributor
+HRAD30 | Compensation Officer Senior | Individual contributor
+HRAD33 | Training & Development Officer | Individual contributor
+HRAD34 | Talent Development and Culture Director | This Position Manages People
+HRAD35 | Human Resources Business Partner and Talent Attraction Director | This Position Manages People
+HRAD36 | Organizational Development and Culture Supervisor | This Position Manages People
+HRAD37 | Culture Experience Coordinator | Individual contributor
+HRAD38 | Total Rewards Director | This Position Manages People
+HRAD39 | Chief Employee Relations and HR Compliance Officer | This Position Manages People
+HRAD40 | Employee Relations and HR Compliance Specialist | Individual contributor
+HRCL03 | Human Resources Specialist | Individual contributor
+HRCL08 | Payroll & Benefits Specialist | Individual contributor
+HRCL11 | Human Resources Coordinator | Individual contributor
+HRCL14 | HRIS & Operations Manager | This Position Manages People
+HRCL15 | Talent Attraction Officer | Individual contributor
+HRCL16 | Talent Attraction Officer Senior | Individual contributor
+HRCL17 | Talent Attraction Lead | Individual contributor
+HRCL18 | HR Operations and Employee Relations Specialist | Individual contributor
+HRCL19 | Total Rewards Coordinator | Individual contributor
+HRCL20 | HR Operations and HRIS Director | This Position Manages People
+HRCL21 | Talent Attraction Team Leader | This Position Manages People
+HRCL22 | Payroll and Total Rewards Analyst | Individual Contributor
+HRTR03 | Training & Development Specialist | Individual contributor
+INCB02 | International Corporate Banking Manager | This Position Manages People
+INLP07 | International Letters of Credit Specialist | Individual contributor
+INLP08 | International Letter of Credit Team Leader | This Position Manages People
+INPB02 | International Relationship Manager-Senior | Individual contributor
+INPB11 | International Relationship Manager II | Individual contributor
+INPB14 | International Relationship Manager I | Individual contributor
+INPB15 | International Client Services Specialist | Individual contributor
+INPB16 | International Client Services Specialist Senior | Individual contributor
+INPB17 | International Client Services Supervisor | This Position Manages People
+INPB18 | International Banker | Individual contributor
+INPB20 | International Banking Team Leader | This Position Manages People
+INPB21 | International Client Acquisition Officer | Individual contributor
+INPB22 | International Private Banking Executive | This Position Manages People
+INTERN | Intern | Individual contributor
+IVAD05 | Investment Services Officer | Individual contributor
+IVCP02 | Investment Operations Specialist | Individual contributor
+IVCP04 | Private Wealth Investment Analyst | Individual contributor
+LGAD10 | Associate General Counsel | Individual contributor
+LGAD14 | Co-General Counsel | This Position Manages People
+LGAD15 | Transactional Attorney | Individual contributor
+LGCL01 | Legal Clerk | Individual contributor
+LGCL02 | Legal Clerk Senior | Individual contributor
+LGCP03 | Committee Governance and Minutes Officer | Individual contributor
+LGCP06 | Minute Taker | Individual contributor
+LGCP09 | Legal Assistant-Senior | Individual contributor
+LGCP13 | Paralegal Manager | This Position Manages People
+LGCP14 | Paralegal-Asset Recovery | Individual contributor
+LNAD14 | Commercial and Industrial Asset Recovery Officer | Individual Contributor
+LNAD31 | Wholesale Risk Executive | This Position Manages People
+LNAD35 | Wholesale Risk Director | This Position Manages People
+LNAD42 | Financial Risk & Credit Administration Manager | This Position Manages People
+LNAD52 | Private Banking and Consumer Risk Executive | This Position Manages People
+LNAD53 | Commercial Real Estate New Business Portfolio Risk Officer | Individual contributor
+LNAD58 | Asset Based Lending Manager | This Position Manages People
+LNAD60 | Asset Based Lending Risk Director | This Position Manages People
+LNAD61 | Commercial Real Estate Portfolio Management Officer II | Individual contributor
+LNAD63 | Wholesale Risk Director Senior | This Position Manages People
+LNAD64 | Commercial Real Estate Portfolio Management Officer I | Individual contributor
+LNAD65 | Commercial Real Estate Portfolio Management Officer III | Individual contributor
+LNCP11 | Credit Effectiveness Specialist | Individual contributor
+LNCP34 | Post-Closing Coordinator I | Individual contributor
+LNCP39 | Client Services Specialist | Individual contributor
+LNCP42 | Treasury Management Coordinator | Individual contributor
+LNCP46 | Client Services Specialist-Senior | Individual contributor
+LNCP56 | Wholesale Client Services Director | This Position Manages People
+LNCP58 | Capital Markets Client Services Specialist | Individual contributor
+LNCP59 | Wealth Management Services and Operations Manager | This Position Manages People
+LNCP71 | Association Banking Client Services Supervisor | This Position Manages People
+LNCP72 | Private Banking Client Services Director | This Position Manages People
+LNCP74 | Client Services and Lending Specialist Senior | Individual contributor
+LNCP75 | Wealth Management Services Specialist Senior | Individual contributor
+LNCP76 | Wealth Management Services Manager | This Position Manages People
+LNCP78 | Post-Closing Coordinator II | Individual contributor
+LNCP79 | Wealth Management Operations Specialist | Individual contributor
+LNCP80 | Corporate Banking Specialist Senior | Individual contributor
+LNCP82 | Treasury Management Training Administrator | Individual contributor
+LNCP83 | Credit Effectiveness Manager | This Position Manages People
+LNCP84 | Treasury Management Support Coordinator Senior | Individual contributor
+LNCP87 | Treasury Management Implementation Quality Control Specialist | Individual contributor
+LNCP88 | WM Portfolio Asset Loan Specialist and Services Lead | Individual Contributor
+LNCP89 | Corporate Banking Specialist | Individual Contributor
+LNL101 | Credit Manager | Individual contributor
+LNLM54 | Market President West Florida | This Position Manages People
+LNLN100 | Corporate Group Manager | This Position Manages People
+LNLN102 | Corporate Banking Director | This Position Manages People
+LNLN103 | Direct Lending Director | This Position Manages People
+LNLN104 | Loan Review Officer Lead | Individual contributor
+LNLN107 | Wholesale Portfolio Management Officer II | Individual contributor
+LNLN108 | Wholesale Portfolio Management Officer III | Individual contributor
+LNLN109 | Wholesale Portfolio Management Officer Senior | Individual contributor
+LNLN110 | Wholesale Portfolio Management Officer I | Individual contributor
+LNLN112 | Client Services Lead | Individual contributor
+LNLN23 | Portfolio Specialist | Individual contributor
+LNLN31 | Treasury Management Sales Officer II | Individual contributor
+LNLN38 | Corporate Banking Relationship Manager | Individual contributor
+LNLN41 | Corporate Banking Executive | This Position Manages People
+LNLN49 | Treasury Management Sales Officer I | Individual contributor
+LNLN50 | Corporate Banking Relationship Manager | Individual contributor
+LNLN54 | Market President Central Florida | This Position Manages People
+LNLN56 | Private Client Group Portfolio Risk Officer II | Individual contributor
+LNLN62 | Commercial Banking Team Leader | This Position Manages People
+LNLN64 | Loan Review Officer I | Individual contributor
+LNLN65 | Treasury Management Sales Officer III | Individual contributor
+LNLN68 | Client Services Team Lead | Individual contributor
+LNLN74 | Wholesale Risk Manager | This Position Manages People
+LNLN751 | Wholesale Portfolio Risk Officer II | Individual contributor
+LNLN791 | Wholesale Portfolio Risk Officer I | Individual contributor
+LNLN85 | Residential Banking Director | This Position Manages People
+LNLN87 | Market Executive Palm Beach | Individual contributor
+LNLN89 | Client Services Supervisor | This Position Manages People
+LNLN90 | Residential Secondary Market & Portfolio Risk Underwriter | Individual contributor
+LNLN91 | Residential Mortgage Risk Officer | Individual contributor
+LNLN921 | Corporate Banker Associate  | Individual Contributor
+LNLN97 | Wholesale Portfolio Risk Officer Senior | Individual contributor
+LNLN971 | Wholesale Portfolio Risk Officer III | Individual contributor
+LNLP13 | Loan Documentation Supervisor | This Position Manages People
+LNLP15 | Loan Documentation Specialist II | Individual contributor
+LNLP33 | Loan Documentation Lead | Individual contributor
+LNLP44 | Loan Processor I | Individual contributor
+LNLP45 | Loan Processor II | Individual contributor
+LNLP46 | Loan Processor III | Individual contributor
+LNLP48 | Real Estate Banking Relationship Adm | Individual contributor
+LNLP50 | Loan Services Supervisor | This Position Manages People
+LNLP51 | Construction Portfolio Risk Officer | Individual contributor
+LNLP64 | Loan Services Specialist Sr | Individual contributor
+LNLP67 | Loan Services Specialist | Individual contributor
+LNLP68 | Insurance and Escrow Supervisor | This Position Manages People
+LNLP70 | Loan Processing Lead | Individual contributor
+LNLP71 | Loan File Origination and Post Closing Supervisor | This Position Manages People
+LNLP72 | Loan Services Syndication Officer | Individual contributor
+LNLP73 | Loan Escrow & Insurance Services Specialist Senior | Individual contributor
+LNLP74 | Loan Escrow & Insurance Services Specialist | Individual contributor
+LNLP75 | Loan Processor Capital Market & Syndication Officer | Individual contributor
+LNLP76 | Loan Services Specialist Lead | Individual contributor
+LNLP77 | Construction Portfolio Risk Officer Senior | Individual contributor
+LNLP78 | Loan Escrow and Insurance Services Specialist Lead | Individual Contributor
+LNLP79 | Loan Collateral Protection Program Manager | This Position Manages People
+LNOP127 | Wealth Management Managing Director | This Position Manages People
+LNOP133 | Paralegal | Individual contributor
+LNOP159 | Senior Business Systems Analyst | Individual contributor
+LNOP198 | Credit Risk Data Analyst | Individual contributor
+LNOP62 | Credit Risk Data Analytics Director | This Position Manages People
+LPLP41 | Asset Based Lending Analyst Senior | Individual contributor
+LPLP42 | Asset Based Lending Analyst | Individual contributor
+LPLP44 | Wholesale Portfolio Risk Officer ACH | Individual contributor
+MGAD02 | Real Estate Banking Director | This Position Manages People
+MGAD07 | Loan Processing Manager | This Position Manages People
+MGAD28 | Compliance and Community Reinvestment Act Director | This Position Manages People
+MGAD31 | Residential Risk Underwriting Manager | This Position Manages People
+MGAD34 | Consumer Risk Underwriting Officer | Individual contributor
+MGAD42 | Mortgage Market Manager | This Position Manages People
+MGAD45 | Community Reinvestment Act Officer Director | This Position Manages People
+MGAD47 | Capital Markets Managing Director | This Position Manages People
+MGAD48 | Syndications and Placement Director | This Position Manages People
+MGAD50 | Institutional Financial Sponsors Banker Senior | Individual contributor
+MGAD53 | Institutional Financial Sponsors Associate Senior | Individual contributor
+MGAD54 | Syndications Associate Senior | Individual contributor
+MGAD57 | Capital Placement Banker Senior | Individual contributor
+MGAD58 | Capital Placement Associate Senior | Individual contributor
+MGAD59 | Credit Sales and Trading Director | Individual contributor
+MGAD60 | Commercial Real Estate Risk Director | This Position Manages People
+MGAD61 | Institutional Financial Sponsors Analyst Senior | Individual contributor
+MGAD62 | Specialty Finance Risk Director | This Position Manages People
+MGCP03 | Mortgage Servicing Officer | Individual contributor
+MGCP100 | Residential Lending Regulatory Excellence Support Specialist | Individual Contributor
+MGCP15 | Residential Loan Processor | Individual contributor
+MGCP42 | Residential Loan Closer | Individual contributor
+MGCP43 | Loan Production Assistant | Individual contributor
+MGCP46 | Mortgage Compliance Specialist | Individual contributor
+MGCP50 | Post Closer Residential | Individual contributor
+MGCP55 | Residential Banking Regulatory & Operational Compliance Administrator | Individual contributor
+MGCP59 | Association Banking Director | This Position Manages People
+MGCP64 | Capital Markets Financial Analyst Senior | Individual contributor
+MGCP66 | Association Banking Relationship Manager I | Individual contributor
+MGCP68 | Mortgage Compliance Specialist Sr. | Individual contributor
+MGCP69 | Residential Banking Operations Support Manager | This Position Manages People
+MGCP71 | Loan Quality Assurance Specialist | Individual contributor
+MGCP74 | Residential and Consumer Banking Operations Manager | This Position Manages People
+MGCP75 | Secondary Market Analyst | Individual contributor
+MGCP76 | Association Banking Analyst | Individual contributor
+MGCP77 | Residential Operations Support Specialist | Individual contributor
+MGCP81 | Residential Operations Closing Manager | This Position Manages People
+MGCP83 | Association Banker | Individual contributor
+MGCP84 | Association Banking Relationship Manager Senior | Individual contributor
+MGCP86 | Residential Construction Loan Conversion Specialist | Individual contributor
+MGCP87 | Residential Operations Compliance Officer | Individual contributor
+MGCP89 | Residential Loan Processing Support Specialist | Individual contributor
+MGCP92 | Loan Booking Supervisor | This Position Manages People
+MGCP93 | Loan Quality Assurance Supervisor | This Position Manages People
+MGCP94 | Residential Quality Control Manager | This Position Manages People
+MGCP96 | Residential Lending Quality Control Insurance Specialist | Individual contributor
+MGCP97 | Residential QC/QA Underwriter | Individual contributor
+MGCP98 | Residential Underwriting QC/QA Specialist | Individual Contributor
+MGCP99 | Secondary Market and Post Closing Lead | Individual Contributor
+MGLN03 | Real Estate Relationship Manager | Individual contributor
+MGLN04 | Mortgage Banker | Individual contributor
+MGLN26 | Real Estate Relationship Manager-Senior | Individual contributor
+MGLN28 | Community Development Banker | Individual contributor
+MGLN38 | Commercial Real Estate Associate | Individual Contributor
+MGLN50 | Community Development Banker II | Individual contributor
+MGLN52 | Capital Markets Portfolio Risk Officer | Individual contributor
+MGLN53 | Mortgage Loan Originator | Individual contributor
+MGLN54 | Capital Markets Portfolio Management Officer | Individual contributor
+MGLP03 | Real Estate Appraisal Manager | This Position Manages People
+MGLP05 | Real Estate Appraiser Coordinator | Individual contributor
+MGLP07 | Real Estate Review Appraiser | Individual contributor
+MGLP11 | Real Estate Appraisal Supervisor | This Position Manages People
+MKTG05 | Content & Performance Marketing Officer | Individual contributor
+MKTG08 | Product Marketing Specialist | Individual contributor
+MKTG18 | Product Marketing Specialist-Residential Banking | Individual contributor
+MKTG21 | Chief Marketing Officer | This Position Manages People
+MKTG22 | Marketing Research Analyst | Individual contributor
+MKTG23 | Marketing Operations Manager | This Position Manages People
+MKTG25 | Digital Marketing Specialist | Individual contributor
+MKTG26 | Integrated Marketing Lead | Individual contributor
+MKTG27 | Public Relations and Social Media Lead | Individual contributor
+MKTG28 | Community Relations Manager | Individual contributor
+MKTG29 | Marketing Design Officer | Individual contributor
+MKTG30 | Partnerships and Communications Manager | This Position Manages People
+MKTG31 | Chief Community and Internal Communications Officer  | This Position Manages People
+MKTG32 | Internal Communications Manager | Individual contributor
+MKTG33 | Marketing and Events Officer | Individual contributor
+OPAD00 | Business Continuity Program Analyst | Individual contributor
+OPAD100 | Platform Architecture and Engineering Manager | This Position Manages People
+OPAD101 | Platform Marketing Product Owner | Individual contributor
+OPAD102 | Cloud Security Engineer | Individual contributor
+OPAD103 | Loan Operations Manager | This Position Manages People
+OPAD104 | DevOps Engineer Senior | Individual contributor
+OPAD106 | Platform Lending Solutions Specialist | Individual contributor
+OPAD107 | Integration Technical Architect | Individual contributor
+OPAD108 | Integration Solutions Architect | Individual contributor
+OPAD109 | Foreign Exchange Operations Manager | Individual contributor
+OPAD110 | ServiceNow Administrator | Individual Contributor
+OPAD111 | Digital Banking Team Leader | This Position Manages People
+OPAD112 | Salesforce Technical Architect Team Leader | This Position Manages People
+OPAD114 | Loans Post Closing & Systems Solutions Manager | This Position Manages People
+OPAD17 | Project Manager II | Individual contributor
+OPAD20 | Loan Operations Director | This Position Manages People
+OPAD27 | Deposit Support Manager | This Position Manages People
+OPAD36 | Data Architect and Database Manager | This Position Manages People
+OPAD37 | Information Services Manager | This Position Manages People
+OPAD39 | Digital Banking Manager | This Position Manages People
+OPAD40 | Digital Banking Supervisor | This Position Manages People
+OPAD57 | Salesforce Platform Developer | Individual contributor
+OPAD61 | Salesforce Platform Administrator | Individual contributor
+OPAD63 | Digital Channels Coordinator I | Individual contributor
+OPAD64 | Digital Channels Coordinator II | Individual contributor
+OPAD65 | Digital Channels Coordinator III | Individual contributor
+OPAD68 | Program Manager | Individual contributor
+OPAD69 | Resiliency, Security and Safety Director | This Position Manages People
+OPAD75 | Platform LOS Solutions Architect | This Position Manages People
+OPAD76 | Applications Administrator | Individual contributor
+OPAD77 | Data Governance Officer | This Position Manages People
+OPAD78 | Integration Engineer & Developer | Individual contributor
+OPAD80 | Project Manager III | Individual contributor
+OPAD82 | Enterprise Architect | This Position Manages People
+OPAD88 | ServiceNow Architect | This Position Manages People
+OPAD89 | Digital Operations Director | This Position Manages People
+OPAD90 | Digital Payments Manager | This Position Manages People
+OPAD91 | Process Improvement Manager | Individual contributor
+OPAD92 | Digital Payments Team Leader | This Position Manages People
+OPAD97 | System Integration Team Leader | This Position Manages People
+OPAD98 | Salesforce Platform Developer Junior | Individual contributor
+OPAD99 | Digital Payments Supervisor | This Position Manages People
+OPCL44 | Policy & Procedure Specialist | Individual contributor
+OPCL54 | Systems Analyst | Individual contributor
+OPCL55 | Deposit Support Specialist I | Individual contributor
+OPCL56 | Deposit Support Specialist II | Individual contributor
+OPCL57 | Deposit Support Specialist III | Individual contributor
+OPCL58 | Business Systems Manager-Senior | This Position Manages People
+OPCL61 | Systems Administrator-Senior | Individual contributor
+OPCL63 | Deposit Support Supervisor | This Position Manages People
+OPCL64 | Deposit Support Team Leader | This Position Manages People
+OPCL65 | IT Operations & Systems Administrator | Individual contributor
+OPCL66 | Microsoft 365 Lead Engineer | Individual contributor
+OPCL67 | Infrastructure Engineer Senior | Individual Contributor
+OPCP09 | Programmer Analyst-Senior | Individual contributor
+OPCP13 | BI Data Solutions Architect | Individual contributor
+OPCP28 | Technical Writer/Business Analyst | Individual contributor
+OPCP34 | IT Asset Officer | Individual contributor
+OPCP35 | Operational Support Specialist III | Individual contributor
+OPCP36 | Client Care Specialist I | Individual contributor
+OPCP37 | Client Care Specialist II | Individual contributor
+OPCP38 | Operational Support Specialist II | Individual contributor
+OPCP39 | Operational Support Specialist I | Individual contributor
+OPCP40 | Client Care Team Leader | This Position Manages People
+OPCP41 | Client Care Manager | This Position Manages People
+OPCP42 | Operational Excellence Manager | This Position Manages People
+OPCP43 | Client Concierge Manager  | This Position Manages People
+OPGV01 | Payments Governance and Operations Manager | This Position Manages People
+OPGV02 | Payments Governance Analyst Senior | Individual contributor
+OPGV03 | Payments Governance Analyst | Individual contributor
+OPOP07 | Operations Support Administrator | Individual contributor
+OPOP1010 | Governance, Risk, and Compliance Analyst | Individual contributor
+OPOP1011 | Identity & Access Management Security Engineer Senior | Individual contributor
+OPOP1013 | Cyber Security Specialist Senior | Individual contributor
+OPOP1014 | Application Security Engineer | Individual contributor
+OPOP1015 | Enterprise Identity and Access Management Officer Senior | Individual contributor
+OPOP1016 | Security Architecture and Engineering Manager | This Position Manages People
+OPOP1017 | Governance, Risk, and Compliance Manager | This Position Manages People
+OPOP1018 | Governance, Risk, and Compliance Analyst Senior | Individual contributor
+OPOP1019 | Cyber Security Specialist | Individual Contributor
+OPOP1020 | Operational Resilience Analyst | Individual Contributor
+OPOP106 | GRC Specialist Senior | Individual contributor
+OPOP108 | Data Security Engineer | Individual Contributor
+OPOP110 | GRC Automation and AI Specialist Senior | Individual contributor
+OPOP14 | BCP/Cyber Security Analyst | Individual contributor
+OPOP87 | Information Technology Change Administrator Senior | Individual contributor
+OPOP91 | Data Loss Prevention Administrator | Individual contributor
+OPOP93 | Identity Access Management (IdAM) Manager | This Position Manages People
+OPOP96 | Security Operations Analyst | Individual contributor
+OPOP97 | Identity & Access Management Security Engineer | Individual Contributor
+OPOP98 | Privileged Access Management Lead Engineer | Individual contributor
+OPOT01 | Third-Party Risk Management Contract Specialist | Individual contributor
+OPOT02 | Third-Party Rsk Management Analyst | Individual contributor
+OPOT03 | Third-Party Risk Management Manager | This Position Manages People
+OPOT04 | Third-Party Rsk Management Analyst | Individual Contributor
+OPOT05 | Program and Third-Party Risk Management Director | This Position Manages People
+OPOT06 | Enterprise Program Governance Director | Individual contributor
+OPPC15 | Technical Business Analyst | Individual contributor
+OPPC18 | Technical Business Analyst-Senior | Individual contributor
+OPPC29 | Systems Analyst and Database Administrator | Individual contributor
+OPPC34 | End User Technical Support III | Individual contributor
+OPPC36 | Core Applications Specialist | Individual contributor
+OPPC38 | Network Manager | This Position Manages People
+OPPC39 | End User Technical Support I | Individual contributor
+OPPC45 | End User Technical Support II | Individual contributor
+OPPC49 | Analysis Application Specialist | Individual contributor
+OPPC54 | Platform Solutions Engineer | Individual contributor
+OPPC57 | Enterprise Automation Director | This Position Manages People
+OPPC58 | Database Administrator | Individual contributor
+OPPC62 | IT Operations Manager | This Position Manages People
+OPPC67 | Enterprise Architecture - Cloud & Data Center Manager | This Position Manages People
+OPPC68 | LOB Business Advisor | Individual contributor
+OPPC70 | Network Engineer | Individual contributor
+OPPC73 | Network Analyst | Individual contributor
+OPPC74 | Core Applications and Provisioning Specialist | Individual contributor
+OPPC75 | Automation Engineer II | Individual contributor
+OPPC77 | Business Process Analyst | Individual contributor
+OPPC79 | Security Infrastructure and Operations Director | This Position Manages People
+OPPC80 | Internal Clients Technical Support Supervisor | This Position Manages People
+OPPC81 | Security Engineer | Individual contributor
+OPPC82 | Vulnerability Remediation Engineer Senior | Individual contributor
+OPPC84 | Platform Delivery Manager | This Position Manages People
+OPPC85 | Vulnerability Risk Specialist | Individual contributor
+OPPC86 | AI Business Solutions Architect | Individual contributor
+OPPC87 | Machine Learning Artificial Intelligence Engineer  | Individual Contributor
+OPPC88 | Artificial Intelligence Software Engineer Senior  | Individual Contributor
+ORGT02 | Transformation Officer | Individual contributor
+ORGT08 | Data Engineer | Individual contributor
+ORGT39 | Data Analytics Manager | This Position Manages People
+ORGT42 | Platform Analyst Senior | Individual contributor
+ORGT44 | Platform Manager | Individual contributor
+ORGT46 | Transformation Analyst | Individual contributor
+ORGT52 | Partnership & Products | This Position Manages People
+ORGT57 | SBA Manager | Individual contributor
+ORGT58 | SBA National Sales Leader | This Position Manages People
+ORGT61 | Strategy Leader Senior | Individual contributor
+ORGT64 | Digital Product Owner | Individual contributor
+ORGT68 | SBA Business Development Officer | Individual contributor
+ORGT69 | Insurance Services Director | Individual contributor
+ORGT70 | Project Leader Strategy | Individual contributor
+ORGT71 | Portfolio Management and Investment Strategy Director | This Position Manages People
+ORGT72 | Platform Analyst | Individual contributor
+ORGT73 | Business Data Quality Analyst | Individual contributor
+ORGT74 | Product Manager Senior | Individual contributor
+ORGT75 | Analytical Services Supervisor | This Position Manages People
+ORGT76 | Technical Project Analyst | Individual contributor
+ORGT77 | Product Manager | Individual contributor
+ORGT78 | Project Leader Strategy - Sales | Individual Contributor
+ORGT79 | SBA Business Development Associate | Individual Contributor
+ORGT80 | Platform Solutions Analyst Senior | Individual Contributor
+ORGT81 | Investment Portfolio Manager Senior  | Individual Contributor
+ORGT82 | SBA Loan Administration Specialist | Individual Contributor
+ORGT83 | SBA Sales Support Specialist | Individual Contributor
+PBAD03 | Business and Personal Banking Regional Director | This Position Manages People
+PBAD06 | Treasury Management Sales Director | This Position Manages People
+PBAD12 | Commercial Banking Director | This Position Manages People
+PBAD19 | Treasury Management Product Manager | Individual contributor
+PBAD23 | Commercial Banking Executive | This Position Manages People
+PBAD27 | Treasury Management Implementation Manager | This Position Manages People
+PBAD28 | Treasury Management Support and Operations Manager | This Position Manages People
+PBAD29 | Treasury Management Implementation Specialist | Individual contributor
+PBAD30 | Treasury Management Implementation Specialist Senior | Individual contributor
+PBAD31 | Business and Personal Banking Operations Director | This Position Manages People
+PBAD32 | Product Manager - Digital Banking | Individual Contributor
+PBAD33 | Digital Banking and Treasury Products Director | This Position Manages People
+PBAD34 | Treasury Management Delivery Supervisor | This Position Manages People
+PBAD35 | Business and Personal Banking Market Director | This Position Manages People
+PBAD36 | Client Onboarding & Experience Manager  | Individual Contributor
+PBAN03 | Treasury Management Analyst I | Individual contributor
+PBAN05 | Treasury Management Portfolio Specialist | Individual contributor
+PBAN07 | Treasury Management Inside Sales Representative | Individual contributor
+PBAN08 | Treasury Management Sales Manager | This Position Manages People
+PBAN09 | Treasury Management Analyst Supervisor | This Position Manages People
+PBAN10 | Treasury Management Team Leader  | This Position Manages People
+PBCL01 | Business & Personal Banking Support Assistant | Individual contributor
+PBLN22 | Private Client Team Leader | This Position Manages People
+PBLN27 | Private Banking Officer Senior | Individual contributor
+PBLN29 | Private Banking Officer | Individual contributor
+PBLN34 | Commercial, BPB and Private Banking Director | This Position Manages People
+PBMG10 | Corporate Banking Relationship Manager Senior | Individual contributor
+PBMG11 | Corp Bkg Relation Mgr–A&D | Individual Contributor
+PBPB00 | Client Outreach Specialist | Individual Contributor
+PBPB08 | Commercial Banker II | Individual contributor
+PBPB12 | Commercial Banker I | Individual contributor
+PBPB23 | Small Business Banker I | Individual contributor
+PBPB24 | Small Business Banker III | Individual contributor
+PBPB30 | Small Business Banker II | Individual contributor
+PBPB37 | Commercial Banker Senior | Individual contributor
+PBPB38 | Commercial Banker Associate | Individual contributor
+PBPB52 | Banking Center Support Specialist | Individual contributor
+PBPB56 | Sales & Service Banker | Individual contributor
+PBPB60 | Sales Effectiveness Manager | This Position Manages People
+PBPB61 | Sales Effectiveness Officer | Individual Contributor
+PBPB62 | Universal Banker | Individual contributor
+PBPB63 | Universal Banker Senior | Individual contributor
+PBPB66 | Small Business Banker Manager | This Position Manages People
+PBPB67 | Market Manager | This Position Manages People
+PBPB68 | Market Manager Senior | This Position Manages People
+PBPB69 | Market Team Leader | This Position Manages People
+PBPB70 | Sales and Service Banker Senior  | Individual Contributor
+PBRS13 | Regional Manager | This Position Manages People
+PBRS16 | Regulatory Operations Consultant Sr. | Individual contributor
+PBRS20 | Business Risk and Controls Data Analyst | Individual Contributor
+PGMG12 | Business Banker | Individual contributor
+RLDF01 | First Line Risk Management Director | This Position Manages People
+RLDF02 | Business Controls Manager | This Position Manages People
+RLDF03 | Business Controls Analyst | Individual contributor
+TMCX01 | TM Client Experience and Product Strategy Director | This Position Manages People
+TMTR01 | Trade Services and Finance Product Director | This Position Manages People
+TMTR02 | Trade Services Product Manager | Individual contributor
+TMTR03 | Trade Finance and  Working Capital Solutions Product Manager | Individual contributor
+TMTR04 | Trade Product and Portfolio Manager | Individual contributor
+TMTR05 | Core Trade Operations Specialist Team Leader | This Position Manages People
+TMTR07 | Trade Payables and Receivables Operations Specialist Lead | Individual Contributor
+WMFN04 | Private Wealth Advisor | Individual Contributor
+WMFN05 | Private Wealth Advisor Senior | Individual contributor
+WMFN08 | Private Wealth Fiduciary Specialist | Individual contributor
+WMFN09 | Senior Advisor | Individual contributor
+WMRS09 | Chief Fiduciary Officer and Director of Trust Operations | This Position Manages People
+WMRS10 | Private Wealth Trust Officer Senior | Individual contributor
+
+
+SHORTLIST TEST 1 - LOAN DOCUMENTATION SPECIALIST III
+NewPositionJSON:
+{"captured": {"Active": true, "BusinessReason": "Increased workload - commercial loan volume has grown and complex files need a more experienced preparer", "RequestType": "New", "Department": "Loan Documentation", "PrimaryPurpose": "Provide specialized technical knowledge", "DailyWork": "Prepares loan documents for commercial, commercial real estate, and home equity loans; reviews title searches and title commitments; resolves title issues with attorneys and title agents; verifies insurance coverage; performs pre-funding and post-closing reviews; maintains documentation exception records; answers documentation questions from relationship managers; helps train newer specialists", "ReportsTo": "Loan Documentation Supervisor", "HasDirectReports": "No", "DirectReportCount": "", "OwnedScope": "Complex commercial and CRE documentation files", "Decisions": "Clears routine documentation exceptions; escalates title and policy exceptions to the supervisor", "Sales": "No", "RelationshipManager": "No", "NMLS": "No", "Education": "High School Diploma / GED Equivalent", "EducationRequirement": "Required", "Experience": "5-7 Years - preparing loan documentation for various loan types", "LicenseStatus": "Not Applicable", "LicenseDetails": "", "RequestedTitle": "Loan Documentation Specialist III", "ClassificationNotes": ""}, "people_leadership": "Individual Contributor", "draft": "{\"purpose\": \"The Loan Documentation Specialist III is responsible for preparing and reviewing documentation for complex commercial, commercial real estate, and home equity loans. The role coordinates with attorneys and title agents to resolve title issues, performs pre-funding and post-closing reviews, and serves as a resource to relationship managers and newer specialists.\", \"principal_duties\": [{\"text\": \"Prepares loan documents for commercial, commercial real estate, and home equity loans.\"}, {\"text\": \"Reviews title searches and title commitments prior to closing.\"}, {\"text\": \"Resolves title issues with attorneys and title agents.\"}, {\"text\": \"Verifies appropriate insurance coverage for all loan types.\"}, {\"text\": \"Performs pre-funding reviews prior to funding.\"}, {\"text\": \"Conducts post-closing reviews to ensure documentation requirements are met.\"}, {\"text\": \"Maintains records for pending documentation exceptions.\"}, {\"text\": \"Responds to documentation questions from relationship managers.\"}, {\"text\": \"Assists with training newer loan documentation specialists.\"}, {\"text\": \"Escalates title and policy exceptions to the Loan Documentation Supervisor.\"}], \"education\": \"High School Diploma or GED equivalent. Required Or\", \"work_experience\": [{\"text\": \"5-7 years of experience preparing loan documentation for various loan types. Required\"}], \"certifications\": \"\"}", "ksas": "{\"knowledge\": [{\"text\": \"In-depth knowledge of loan documentation requirements for commercial and real estate loans.\", \"supports\": \"Duties 1, 6\"}], \"skills\": [{\"text\": \"Skill in reviewing title commitments and resolving title issues.\", \"supports\": \"Duties 2, 3\"}], \"abilities\": [{\"text\": \"Ability to manage a high volume of complex files accurately.\", \"supports\": \"Duties 1, 5\"}]}"}
+
+EXPECT: matches include LNLP15 (Loan Documentation Specialist II), LNLP33 (Loan Documentation Lead), and probably LNLP13 (Loan Documentation Supervisor); job_codes exactly as in the catalog, comma-separated, no spaces.
+
+
+SHORTLIST TEST 2 - WIRE OPERATIONS SPECIALIST II (no wire jobs exist)
+NewPositionJSON:
+{"captured": {"Active": true, "BusinessReason": "Increased workload - outgoing and incoming wire volume has doubled over the past year", "RequestType": "New", "Department": "Treasury Operations", "PrimaryPurpose": "Lead a function or process", "DailyWork": "Reviews and releases outgoing domestic and international wire requests (about 150 a day) after verifying callbacks and authorizations; investigates and resolves incoming wire exceptions and returns; monitors the Fed and SWIFT queues during the day and escalates delays; reconciles the daily wire general ledger accounts; screens wires against OFAC and escalates potential matches to BSA; answers wire status questions from branches and relationship managers; maintains wire procedures; helps train new operations staff on the wire platform", "ReportsTo": "Treasury Operations Manager", "HasDirectReports": "No", "DirectReportCount": "", "OwnedScope": "The daily wire release process and wire exception queue; the wire procedures manual", "Decisions": "Releases wires within established authorization limits and approves routine exception resolutions; escalates wires over limit, potential OFAC matches, and suspected fraud to the manager or BSA", "Sales": "No", "RelationshipManager": "No", "NMLS": "No", "Education": "Bachelor's Degree - Finance or Business", "EducationRequirement": "Preferred", "Experience": "2-4 Years - wire transfer operations at a bank", "LicenseStatus": "Not Applicable", "LicenseDetails": "", "RequestedTitle": "Wire Operations Specialist II", "ClassificationNotes": ""}, "people_leadership": "Individual Contributor", "draft": "{\"purpose\": \"The Wire Operations Specialist II is responsible for the accurate and timely processing of outgoing and incoming wire transfers for Treasury Operations. The role reviews and releases wire requests, resolves wire exceptions, and reconciles daily wire activity. It supports branches and relationship managers with wire inquiries and maintains the department's wire procedures.\", \"principal_duties\": [{\"text\": \"Reviews and releases outgoing domestic and international wire requests after verifying callbacks and authorizations.\"}, {\"text\": \"Investigates and resolves incoming wire exceptions and returns.\"}, {\"text\": \"Monitors Federal Reserve and SWIFT queues throughout the day and escalates delays to management.\"}, {\"text\": \"Reconciles daily wire general ledger accounts to ensure accuracy and timely resolution of differences.\"}, {\"text\": \"Screens wire transactions against OFAC lists and escalates potential matches to BSA.\"}, {\"text\": \"Responds to wire status inquiries from branches and relationship managers.\"}, {\"text\": \"Approves routine exception resolutions within established authorization limits.\"}, {\"text\": \"Escalates wires over authorized limits and suspected fraud to the Treasury Operations Manager.\"}, {\"text\": \"Maintains the wire procedures manual to reflect current processes.\"}, {\"text\": \"Assists with training new operations staff on the wire platform.\"}], \"education\": \"Bachelor's Degree in Finance, Business or related field. Preferred Or\\nAn equivalent combination of education and relevant professional experience may be considered in lieu of a degree.\", \"work_experience\": [{\"text\": \"2-4 years of wire transfer operations experience in a bank. Required\"}], \"certifications\": \"\", \"change_summary\": \"\", \"notes_for_manager\": [], \"questions_for_manager\": [], \"hr_flags\": []}", "ksas": "{\"knowledge\": [{\"text\": \"Working knowledge of domestic and international wire transfer operations.\", \"supports\": \"Duties 1, 2\"}, {\"text\": \"Working knowledge of OFAC screening requirements for wire transactions.\", \"supports\": \"Duty 5\"}, {\"text\": \"Understanding of general ledger reconciliation practices.\", \"supports\": \"Duty 4\"}], \"skills\": [{\"text\": \"Proficiency in researching and resolving wire exceptions and returns.\", \"supports\": \"Duties 2, 7\"}, {\"text\": \"Strong written and verbal communication skills for branch and relationship manager inquiries.\", \"supports\": \"Duty 6\"}, {\"text\": \"Skill in monitoring payment queues and identifying processing delays.\", \"supports\": \"Duty 3\"}], \"abilities\": [{\"text\": \"Ability to meet daily wire cutoff deadlines with a high level of accuracy.\", \"supports\": \"Duties 1, 3\"}, {\"text\": \"Ability to follow established authorization limits and escalation procedures.\", \"supports\": \"Duties 7, 8\"}, {\"text\": \"Ability to explain wire procedures clearly to new operations staff.\", \"supports\": \"Duties 9, 10\"}], \"change_summary\": \"\", \"notes_for_manager\": [], \"questions_for_manager\": [], \"hr_flags\": []}"}
+
+EXPECT: only payments-related jobs if any (for example payments operations roles), or empty matches and job_codes "". No jobs picked just for sharing "Specialist" or "Operations".
+
+
+========================================
+PROMPT 2: COMPARE WITH EXISTING JOBS
+========================================
+COMPARE TEST 1 - LEVEL OVERLAP
+NewPositionJSON: same as Shortlist Test 1
+ExistingJobsJSON:
+[{"title": "Loan Documentation Specialist II", "people_management": "Individual contributor", "sales": "Non-Sales", "relationship_manager": "No", "nmls": "", "purpose": "The Loan Documentation Specialist II is responsible for producing consumer, commercial and home equity loan types, including but not limited to general administrative duties relating thereto. Performs pre-funding, post-closing reviews and booking of loans and verification of collateral.  Interfaces with division/department staff in the prompt resolution of problems related to loan documentation and processing.  Provides customer service/support to Relationship Managers.   \r\n", "principal_duties": "\u2022 Assembles loan documentation files. <br>\n\u2022 Reviews pre-requisite requirements are adhered to prior to preparing loan documents (due diligence, UCC-1 searches, corporate searches, proper lending authority, collateral, etc.). <br>\n\u2022 Prepares loan documents for all loan types (i.e. consumer, commercial and home equity). <br>\n\u2022 Reviews flood determinations for accuracy. <br>\n\u2022 Requests, reviews and ascertains appropriate insurance coverage for all loan types. <br>\n\u2022 Obtains title searches and/or title commitment for Title Insurance for home equity loans. <br>\n\u2022 Orders \u201cHold\u201d on CD\u2019s and Repo\u2019s pledged as collateral. <br>\n\u2022 Conducts review of loans prior to funding, bar-coding and booking. <br>\n\u2022 Creates and maintains records for pending documentation exceptions. <br>\n\u2022 Provides client service/support to Relationship Managers. <br>\n\u2022 Ability to handle and prioritize multiple projects simultaneously. <br>\n\u2022 Functions efficiently and effectively under deadlines and stress while maintaining a professional and mature demeanor. <br>\n\u2022 Works independently in the preparation of loan documentation for all loan types (i.e., consumer, commercial, commercial real estate and home equity lines of credit), including interaction with attorneys and/or title agents to handle real-estate secured transactions, review of title searches and title commitments prior to closing, resolution of title issues, review of HUD-1 Settlement Statements, preparation of escrow letters and responsibility for ascertaining proper conditions for funding. <br>\n\u2022 Strong customer service ethics and interpersonal communications skills. <br>\n\u2022 Capacity to evaluate and prioritize tasks-at-hand. <br>\n\u2022 Ability to analyze and interpret information and situations and find solutions. <br>\n\u2022 Attends to other miscellaneous administrative functions as determined by the department supervisor. <br>", "education": "High School Diploma or GED equivalent.  Required\n An equivalent combination of education and relevant professional experience may be considered in lieu of a degree.", "work_experience": "2-4 years experience with preparation of loan documentation for various loan types. Required\n Experienced with automated loan documentation prep systems. Required", "ksas": "Preferred experience with both LaserPro and attorney-drafted loans.\nEstablished knowledge of rules, regulations, and policies relating to loan documentation.\nExcellent analytical, decision-making, and effective problem resolution skills.\nProven ability to work productively and efficiently without direct supervision.\nAble to manage high volume of activity and maintain production goals.\nExcellent organizational and time management skills with high attention to detail and accuracy.\nAbility to work well in a collaborative, cohesive, and cooperative team environment.\nAbility to communicate effectively and professionally, both verbally and in writing, with customer, coworkers and third parties.\nAbility to provide professional support and present a positive image within the department, between the all divisions, and throughout the bank.\nCompetent in the use of personal computer systems, internet applications and email, and various windows based software applications.", "certifications": ""}, {"title": "Loan Documentation Lead", "people_management": "Individual contributor", "sales": "Non-Sales", "relationship_manager": "No", "nmls": "", "purpose": "Responsible for processing and documenting all consumer, commercial, and small business, as well as certain condominium loans and real estate loan transactions, as well as certain loan modification documents for all Lending Divisions, including but not limited to general administrative duties relating thereto.  Serves as a Leader and coordinates work flow and support functions of subordinates to ensure production levels and deadlines are met and the Bank's strategic business objectives are achieved in an efficient and effective manner.  Performs pre-funding, post-closing reviews and booking of loans. Verifies collateral. Interfaces with division/department staff in the prompt resolution of problems related to loan documentation and processing.  Provides client service/support to Loan Originators. ", "principal_duties": "\u2022 Ensures accuracy and timely completion of loan documents, as determined by the department supervisor. <br>\n\u2022 Produces and/or reviews loan documents prepared by Loan Documentation Specialists, as determined by the department supervisor. <br>\n\u2022 Assembles and barcodes loan documentation files. <br>\n\u2022 Reviews pre-requisite requirements are adhered to prior to preparing loan documents (due diligence, UCC-1 searches, corporate searches, proper lending authority, collateral, etc.). <br>\n\u2022 Works independently in the preparation of loan documentation for all loan types (i.e., consumer, commercial, commercial real estate and home equity lines of credit), including interaction with attorneys and/or title agents to handle real-estate secured transactions, review of title searches and title commitments prior to closing, resolution of title issues, review of HUD-1 Settlement Statements, preparation of escrow letters and responsibility for ascertaining proper conditions for funding. <br>\n\u2022 Requests, reviews and ascertains appropriate insurance coverage for all loan types. <br>\n\u2022 Places \u201cHold\u201d on CD\u2019s and Repo\u2019s pledged as collateral. <br>\n\u2022 Conducts post-closing review of loans documented in the Loan Documentation Department to ensure documentation requirements are adhered to prior to booking, as determined by the department supervisor. <br>\n\u2022 Performs pre-funding review prior to funding, as determined by the department supervisor. <br>\n\u2022 Prepares files for scanning and subsequent review and/or booking by Loan Operations and monitoring by Loan Services and Collateral Control. <br>\n\u2022 Creates and maintains records for pending documentation exceptions. <br>\n\u2022 Provides client service/support to Loan Originators. <br>\n\u2022 Ability to handle and prioritize multiple projects simultaneously. <br>\n\u2022 Functions efficiently and effectively under deadlines and stress while maintaining a professional and mature demeanor. <br>\n\u2022 Good working knowledge of compliance issues as they relate to consumer loans, commercial loans, condominium loans, and commercial real estate loans. <br>\n\u2022 Strong client service ethic and interpersonal communications skills. <br>\n\u2022 Capacity to evaluate and prioritize tasks-at-hand. <br>\n\u2022 Serves as backup to Loan Documentation Supervisor. <br>\n\u2022 Ability to analyze and interpret information and situations and find solutions. <br>\n\u2022 Attends to other miscellaneous administrative functions as determined by the department supervisor. <br>", "education": "High School Diploma or GED equivalent. Required", "work_experience": "5-7 years experience with preparation of loan documentation for various loan types. Required\n Experienced with automated loan documentation prep systems.  \r\n Required", "ksas": "Preferred experience with both LaserPro and attorney-drafted loans.\nEstablished knowledge of rules, regulations, and policies relating to loan documentation.\nExcellent analytical, decision-making, and effective problem resolution skills.\nProven ability to work productively and efficiently without direct supervision.\nAble to manage high volume of activity and maintain production goals.\nExcellent organizational and time management skills with high attention to detail and accuracy.\nAbility to work well in a collaborative, cohesive, and cooperative team environment.\nAbility to communicate effectively and professionally, both verbally and in writing, with customer, coworkers and third parties.\nAbility to provide professional support and present a positive image within the department, between the all divisions, and throughout the bank.\nCompetent in the use of personal computer systems, internet applications and email, and various windows based software applications.", "certifications": ""}, {"title": "Loan Documentation Supervisor", "people_management": "This Position Manages People", "sales": "Non-Sales", "relationship_manager": "No", "nmls": "", "purpose": "Responsible for preparing and/or supervising the production of consumer, small business, Home Equity loans, as well as certain condominium loans and real estate loan transactions, as well as certain loan modification documents for all Lending Divisions.  Serves as a Team Leader and coordinates work flow and support functions of subordinates to ensure production levels and deadlines are met and the Bank's strategic business objectives are achieved in an efficient and effective manner.  Maintains compliance with laws and regulations applicable to loan documentation, loan operations and support functions.  In conjunction with Human Resources, develops, evaluates, compensates, promotes and terminates staff with the advice and counsel of Manager.   ", "principal_duties": "\u2022 Ensures accuracy and timely completion of all loan documentation work. <br>\n\u2022 In conjunction with Human Resources, develops, evaluates, compensates, promotes and terminates staff with the advice and counsel of Manager.  Properly documents all actions.  Responsible for coaching, developing and providing performance feedback. <br>\n\u2022 Produces and/or reviews loan documents prepared by Loan Documentation Specialists for all loan types. <br>\n\u2022 Provides client service/support to lending officers/loan assistants. <br>\n\u2022 Coordinates due diligence for completion of loan documentation. <br>\n\u2022 Performs pre-funding and post-closing reviews and verification of loan collateral.  Uploads closed loans onto Loan System. <br>\n\u2022 Prepares files for scanning and subsequent review and/or booking by Loan Operations and monitoring by Loan Services and Collateral Control.  Places \u201cHold\u201d on CD\u2019s and Repo\u2019s pledged as collateral. <br>\n\u2022 Conducts post-closing review of loans documented in Loan Documentation Department to ensure documentation requirements are adhered to. <br>\n\u2022 Responsible for maintaining monthly production reports. <br>\n\u2022 Administers and maintains the processing systems and the Metavante interface, including, but not limited to reviewing and implementing updates, and training support staff. <br>\n\u2022 Performs customization of Info-Access for loan configuration and for generation of loan reports. <br>\n\u2022 Oversees centralized process for requesting Flood Determinations from our servicer and timely delivery to other bank personnel of the Flood Determinations and Flood Notices. <br>\n\u2022 Oversees timely compliance by Loan Documentation Specialists of obtaining and clearing postclosing loan exceptions. <br>\n\u2022 Travels to other Bank locations and provides support. <br>\n\u2022 Serves as backup to Loan Documentation Manager. <br>", "education": "Bachelor's Degree in Business, Finance or related field Required\n An equivalent combination of education and relevant professional experience may be considered in lieu of a degree.", "work_experience": "5-7 years experience in Banking, with emphasis in loan documentation, Bank federal and state policies and requirements.   Required\n Experienced with automated loan documentation prep systems.  Required", "ksas": "Knowledge of collateral control and loan servicing requirements.\nAble to manage high volume of activity with accuracy and maintain production goals.\nFunction under minimum supervision, provide guidance to staff preparing loan documents.\nPerform assignments that are varied and moderately complex.\nHandles and prioritizes multiple projects simultaneously.\nAbility to think clearly, communicate effectively and learn quickly.\nFunctions efficiently and effectively under deadlines and stress while maintaining a professional demeanor.", "certifications": ""}]
+
+MatchesJSON:
+{"matches": [{"job_code": "LNLP15", "title": "Loan Documentation Specialist II", "relationship": "same ladder", "reason": "Prepares loan documentation; the level below the new position."}, {"job_code": "LNLP33", "title": "Loan Documentation Lead", "relationship": "same ladder", "reason": "Experienced loan documentation preparer on the same ladder."}, {"job_code": "LNLP13", "title": "Loan Documentation Supervisor", "relationship": "same ladder", "reason": "Leads the loan documentation function the new position reports to."}], "job_codes": "LNLP15,LNLP33,LNLP13"}
+
+EXPECT: result overlaps; a "Job Architecture review:" flag for level overlap naming Loan Documentation Lead (same 5-7 years and overlapping duties); comparisons for all three jobs by title only; no job codes, grade, or pay anywhere; no title suggested; no suggestion to change existing jobs.
+
+
+COMPARE TEST 2 - NO EXISTING JOBS
+NewPositionJSON: same as Shortlist Test 1
+ExistingJobsJSON: (none)
+MatchesJSON: (none)
+
+EXPECT: result no_matches; comparisons [] and hr_flags []; one-sentence manager_message.

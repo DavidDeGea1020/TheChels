@@ -84,6 +84,11 @@ beginDialog:
       variable: Global.NewPositionTitleReview
       value: =""
 
+    - kind: SetVariable
+      id: setVariable_npResetComparison
+      variable: Global.NewPositionComparison
+      value: =""
+
     - kind: SendActivity
       id: sendActivity_npOpening
       activity:

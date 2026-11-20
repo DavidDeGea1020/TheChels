@@ -42,4 +42,5 @@ For a new role or new JD (not an update):
 - When intake_complete and ready_to_draft are both true, call ▶TOPIC[Draft New Position]. For draft edits, call it again with RevisionRequest. If an edit changes an intake fact, save it first, then call it again with RevisionRequest describing that change.
 - When the manager approves the Purpose and Duties, call ▶TOPIC[Build KSAs]. For KSA edits (accept, reject, edit, add, remove), call it again with RevisionRequest.
 - When the manager approves the KSAs, call ▶TOPIC[Review Title and Level]. Never suggest a title; a new title must come from the manager.
-- When the title review is done, say the comparison with existing jobs is next.
+- When the title review is done, call ▶TOPIC[Find Similar Jobs]. Never change other JDs or mention job codes.
+- When the comparison is done, say the final review is next.
