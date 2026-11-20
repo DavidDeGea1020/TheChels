@@ -1,0 +1,59 @@
+kind: AdaptiveDialog
+modelDescription: "Records the manager's confirmation of the new position after the final review and packages the request for HR. Call it only when the manager clearly confirms the job description shown in the final review."
+beginDialog:
+  kind: OnRecognizedIntent
+  id: main
+  intent: {}
+  actions:
+    - kind: ConditionGroup
+      id: conditionGroup_cfStale
+      conditions:
+        - id: conditionItem_cfStale
+          condition: =IsBlank(Global.NewPositionFinal) || Global.NewPositionFinalSnapshot <> Global.NewPositionDraft & "|" & Global.NewPositionKSAs & "|" & JSON(Global.NewPosition)
+          actions:
+            - kind: SetVariable
+              id: setVariable_cfStatusStale
+              variable: Topic.ConfirmStatus
+              value: ="ReviewNeeded"
+
+            - kind: EndDialog
+              id: endDialog_cfStale
+
+    - kind: SetVariable
+      id: setVariable_cfConfirmed
+      variable: Global.NewPositionConfirmed
+      value: =true
+
+    - kind: SetVariable
+      id: setVariable_cfPackage
+      variable: Global.NewPositionPackage
+      value: |-
+        =JSON(
+            {
+                confirmed_on: Text(Now(), DateTimeFormat.UTC),
+                captured: Global.NewPosition,
+                draft: Global.NewPositionDraft,
+                ksas: Global.NewPositionKSAs,
+                final_check: Global.NewPositionFinal,
+                title_review: Global.NewPositionTitleReview,
+                comparison: Global.NewPositionComparison
+            }
+        )
+
+    - kind: SendActivity
+      id: sendActivity_cfDone
+      activity:
+        text:
+          - "Thank you. Your confirmation is recorded, and the job description and HR review flags are packaged for HR. HR will review the title, level, and classifications and make the final decisions."
+
+    - kind: SetVariable
+      id: setVariable_cfStatus
+      variable: Topic.ConfirmStatus
+      value: ="Confirmed"
+
+outputType:
+  properties:
+    ConfirmStatus:
+      displayName: ConfirmStatus
+      description: "Confirmed: the confirmation message was shown; add nothing except offering further help. Do not say the request was sent or submitted to HR. ReviewNeeded: something changed since the final review, or it never ran; call Review New Position again before confirming."
+      type: String

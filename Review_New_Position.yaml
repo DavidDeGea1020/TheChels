@@ -1,0 +1,192 @@
+kind: AdaptiveDialog
+modelDescription: "Runs the final check on the new position and shows the complete job description, the request details for HR, all HR review flags, and anything to fix before confirming. Call it after the comparison with existing jobs, and again after any change made during the final review."
+beginDialog:
+  kind: OnRecognizedIntent
+  id: main
+  intent: {}
+  actions:
+    - kind: ConditionGroup
+      id: conditionGroup_rvNotReady
+      conditions:
+        - id: conditionItem_rvNotReady
+          condition: =IsBlank(Global.NewPositionDraft) || IsBlank(Global.NewPositionKSAs)
+          actions:
+            - kind: SetVariable
+              id: setVariable_rvStatusNotReady
+              variable: Topic.ReviewStatus
+              value: ="NotReady"
+
+            - kind: EndDialog
+              id: endDialog_rvNotReady
+
+    - kind: SetVariable
+      id: setVariable_rvPeople
+      variable: Topic.PeopleLeadership
+      value: |-
+        =Switch(
+            Global.NewPosition.HasDirectReports,
+            "No", "Individual Contributor",
+            "Yes", If(
+                IsBlank(Global.NewPosition.DirectReportCount), "Pending - number of direct reports not captured",
+                IfError(Value(Global.NewPosition.DirectReportCount), 0) >= 2, "This Position Manages People",
+                "HR review - fewer than 2 direct reports"
+            ),
+            "Not yet captured"
+        )
+
+    - kind: InvokeAIBuilderModelAction
+      id: invokeAIBuilderModelAction_rvFinal
+      input:
+        binding:
+          IntakeJSON: |-
+            =JSON(
+                {
+                    captured: Global.NewPosition,
+                    people_leadership: Topic.PeopleLeadership,
+                    system_flags: ForAll(
+                        Filter(
+                            Table(
+                                {Flag: "HR and Compliance review: manager is unsure whether the role requires NMLS registration", On: Global.NewPosition.NMLS = "Unsure"},
+                                {Flag: "People leadership review: fewer than 2 direct reports (exception to the 2+ guideline)", On: Global.NewPosition.HasDirectReports = "Yes" && !IsBlank(Global.NewPosition.DirectReportCount) && IfError(Value(Global.NewPosition.DirectReportCount), 0) < 2},
+                                {Flag: "Job Architecture review: Senior and Lead are Individual Contributor titles, but this role has direct reports", On: Global.NewPosition.HasDirectReports = "Yes" && ("Senior" in Global.NewPosition.RequestedTitle || ("Lead" in Global.NewPosition.RequestedTitle && !("Leader" in Global.NewPosition.RequestedTitle)))}
+                            ),
+                            On
+                        ),
+                        Flag
+                    )
+                },
+                JSONFormat.FlattenValueTables
+            )
+          DraftJSON: =Global.NewPositionDraft
+          KSAsJSON: =Global.NewPositionKSAs
+          ReviewsJSON: |-
+            =JSON(
+                {
+                    readiness_review: Global.NewPositionReview,
+                    title_review: Global.NewPositionTitleReview,
+                    comparison: Global.NewPositionComparison
+                }
+            )
+
+      output:
+        binding:
+          predictionOutput: Topic.Final
+
+      aIModelId: PASTE_FINAL_CHECK_PROMPT_ID
+
+    - kind: SetVariable
+      id: setVariable_rvSaveFinal
+      variable: Global.NewPositionFinal
+      value: =Topic.Final.text
+
+    - kind: SetVariable
+      id: setVariable_rvSnapshot
+      variable: Global.NewPositionFinalSnapshot
+      value: =Global.NewPositionDraft & "|" & Global.NewPositionKSAs & "|" & JSON(Global.NewPosition)
+
+    - kind: SetVariable
+      id: setVariable_rvParseD
+      variable: Topic.D
+      value: =ParseJSON(Global.NewPositionDraft)
+
+    - kind: SetVariable
+      id: setVariable_rvParseK
+      variable: Topic.K
+      value: =ParseJSON(Global.NewPositionKSAs)
+
+    - kind: SetVariable
+      id: setVariable_rvParseF
+      variable: Topic.F
+      value: =ParseJSON(Topic.Final.text)
+
+    - kind: SetVariable
+      id: setVariable_rvJD
+      variable: Topic.JDText
+      value: |-
+        =With(
+            {duties: Table(Topic.D.principal_duties)},
+            "**Requested Title**" & Char(10) & Char(10) &
+            If(IsBlank(Global.NewPosition.RequestedTitle), "Not provided", Global.NewPosition.RequestedTitle) & " (HR determines the final title)" & Char(10) & Char(10) &
+            "**Purpose**" & Char(10) & Char(10) & Text(Topic.D.purpose) & Char(10) & Char(10) &
+            "**Principal Duties and Responsibilities**" & Char(10) & Char(10) &
+            Concat(Sequence(CountRows(duties)), Value & ". " & Text(Index(duties, Value).Value.text), Char(10)) & Char(10) & Char(10) &
+            "**People Management**" & Char(10) & Char(10) &
+            Switch(Topic.PeopleLeadership,
+                "This Position Manages People", "This Position Manages People",
+                "Individual Contributor", "Individual Contributor",
+                "HR review - fewer than 2 direct reports", "This Position Manages People (pending HR review: fewer than 2 direct reports)",
+                "Not captured") & Char(10) & Char(10) &
+            "**Sales/Non-Sales**" & Char(10) & Char(10) &
+            Switch(Global.NewPosition.Sales, "Yes", "Sales", "No", "Non-Sales", "Not captured") & " (manager indicated; HR determines)" & Char(10) & Char(10) &
+            "**Relationship Manager**" & Char(10) & Char(10) &
+            If(IsBlank(Global.NewPosition.RelationshipManager), "Not captured", Global.NewPosition.RelationshipManager) & " (manager indicated; HR determines)" & Char(10) & Char(10) &
+            "**NMLS**" & Char(10) & Char(10) &
+            If(IsBlank(Global.NewPosition.NMLS), "Not captured", Global.NewPosition.NMLS) & " (manager indicated; HR and Compliance determine)" & Char(10) & Char(10) &
+            "**Education Requirements**" & Char(10) & Char(10) &
+            Substitute(Text(Topic.D.education), Char(10), Char(10) & Char(10)) & Char(10) & Char(10) &
+            "**Work Experience Requirements**" & Char(10) & Char(10) &
+            Concat(Table(Topic.D.work_experience), Text(ThisRecord.Value.text), Char(10) & Char(10)) & Char(10) & Char(10) &
+            "**Knowledge, Skills, and Abilities**" & Char(10) & Char(10) &
+            "*Knowledge*" & Char(10) & Concat(Table(Topic.K.knowledge), "- " & Text(ThisRecord.Value.text), Char(10)) & Char(10) & Char(10) &
+            "*Skills*" & Char(10) & Concat(Table(Topic.K.skills), "- " & Text(ThisRecord.Value.text), Char(10)) & Char(10) & Char(10) &
+            "*Abilities*" & Char(10) & Concat(Table(Topic.K.abilities), "- " & Text(ThisRecord.Value.text), Char(10)) & Char(10) & Char(10) &
+            "**Certifications and Licenses**" & Char(10) & Char(10) &
+            If(IsBlank(Text(Topic.D.certifications)), "None", Text(Topic.D.certifications))
+        )
+
+    - kind: SetVariable
+      id: setVariable_rvHR
+      variable: Topic.HRText
+      value: |-
+        =With(
+            {flags: Table(Topic.F.hr_flags), fixes: Table(Topic.F.items_to_resolve)},
+            "**Request details for HR**" & Char(10) & Char(10) &
+            "- Business reason: " & Text(Topic.F.business_reason_summary) & Char(10) &
+            "- Request type: " & If(IsBlank(Global.NewPosition.RequestType), "Not captured", Global.NewPosition.RequestType) & Char(10) &
+            "- Department: " & If(IsBlank(Global.NewPosition.Department), "Not captured", Global.NewPosition.Department) & Char(10) &
+            "- Reports to: " & If(IsBlank(Global.NewPosition.ReportsTo), "Not captured", Global.NewPosition.ReportsTo) & Char(10) &
+            "- Direct reports: " & If(Global.NewPosition.HasDirectReports = "Yes", If(IsBlank(Global.NewPosition.DirectReportCount), "Yes (number not captured)", Global.NewPosition.DirectReportCount), "None") & Char(10) & Char(10) &
+            "**HR review flags**" & Char(10) & Char(10) &
+            If(CountRows(flags) = 0, "None", Concat(flags, "- " & Text(ThisRecord.Value.text), Char(10))) & Char(10) & Char(10) &
+            "**Items to resolve before confirming**" & Char(10) & Char(10) &
+            If(CountRows(fixes) = 0, "None. The job description is ready for your confirmation.", Concat(fixes, "- " & Text(ThisRecord.Value.section) & ": " & Text(ThisRecord.Value.text), Char(10)))
+        )
+
+    - kind: SendActivity
+      id: sendActivity_rvJD
+      activity:
+        text:
+          - |-
+            Here is the complete job description for your review.
+
+            ---
+
+            {Topic.JDText}
+
+    - kind: SendActivity
+      id: sendActivity_rvHR
+      activity:
+        text:
+          - "{Topic.HRText}"
+
+    - kind: SetVariable
+      id: setVariable_rvStatus
+      variable: Topic.ReviewStatus
+      value: =If(Boolean(Topic.F.ready_to_submit), "ReadyToConfirm", "ItemsToResolve")
+
+    - kind: SetVariable
+      id: setVariable_rvOut
+      variable: Topic.FinalReview
+      value: =Topic.Final.text
+
+outputType:
+  properties:
+    FinalReview:
+      displayName: FinalReview
+      description: "JSON from the final check. The full job description, request details, HR flags, and items to resolve were already shown word for word; never repeat or reword them."
+      type: String
+
+    ReviewStatus:
+      displayName: ReviewStatus
+      description: "ReadyToConfirm: everything is on screen; ask the manager whether they confirm the job description as shown or want to change anything. ItemsToResolve: everything is on screen; help the manager fix the first item (save facts with Save New Position Intake, or revise with Draft New Position or Build KSAs using RevisionRequest), then call this topic again. If the manager wants to confirm without fixing, explain the item will go to HR as-is and ask them to confirm. NotReady: the draft or KSAs are missing; return to drafting."
+      type: String

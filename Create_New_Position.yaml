@@ -89,6 +89,26 @@ beginDialog:
       variable: Global.NewPositionComparison
       value: =""
 
+    - kind: SetVariable
+      id: setVariable_npResetFinal
+      variable: Global.NewPositionFinal
+      value: =""
+
+    - kind: SetVariable
+      id: setVariable_npResetSnapshot
+      variable: Global.NewPositionFinalSnapshot
+      value: =""
+
+    - kind: SetVariable
+      id: setVariable_npResetConfirmed
+      variable: Global.NewPositionConfirmed
+      value: =false
+
+    - kind: SetVariable
+      id: setVariable_npResetPackage
+      variable: Global.NewPositionPackage
+      value: =""
+
     - kind: SendActivity
       id: sendActivity_npOpening
       activity:
