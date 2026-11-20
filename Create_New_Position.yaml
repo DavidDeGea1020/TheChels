@@ -30,8 +30,8 @@ beginDialog:
                   - kind: MessageBack
                     text: Start over
 
-            - kind: EndDialog
-              id: endDialog_npBusy
+            - kind: CancelAllDialogs
+              id: cancelAllDialogs_npBusy
 
     - kind: SetVariable
       id: setVariable_npReset
@@ -149,6 +149,8 @@ beginDialog:
           - kind: MessageBack
             text: Other
 
+    - kind: CancelAllDialogs
+      id: cancelAllDialogs_npEnd
 
 inputType:
   properties:
